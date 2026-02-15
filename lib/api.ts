@@ -1,5 +1,5 @@
-
 import { Company, Question } from './data';
+import { getTopics } from './topics';
 
 export async function fetchCompanies(): Promise<Company[]> {
   try {
@@ -71,7 +71,7 @@ function parseCSV(text: string, timePeriod: string): Question[] {
       frequency: isNaN(frequency) ? 0 : frequency,
       leetcodeUrl,
       timePeriod: timePeriod as any,
-      topics: [] 
+      topics: getTopics(id, title)
     });
   }
   

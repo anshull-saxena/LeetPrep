@@ -1,7 +1,7 @@
 'use client'
 
 import { Question } from '@/lib/data'
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, Tag, TrendingUp, Circle } from 'lucide-react'
 
 interface QuestionListProps {
   questions: Question[]
@@ -11,84 +11,94 @@ interface QuestionListProps {
 const getDifficultyColor = (difficulty: string) => {
   switch (difficulty) {
     case 'easy':
-      return 'bg-green-500/20 text-green-300 border-green-500/30'
+      return 'text-green-500'
     case 'medium':
-      return 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30'
+      return 'text-yellow-500'
     case 'hard':
-      return 'bg-red-500/20 text-red-300 border-red-500/30'
+      return 'text-red-500'
     default:
-      return 'bg-muted text-muted-foreground'
-  }
-}
-
-const getTimePeriodLabel = (period: string) => {
-  switch (period) {
-    case 'last-6-months':
-      return 'Last 6m'
-    case '1-year':
-      return '1 year'
-    case 'all-time':
-      return 'All time'
-    default:
-      return period
+      return 'text-muted-foreground'
   }
 }
 
 export default function QuestionList({ questions, totalCount }: QuestionListProps) {
   if (questions.length === 0) {
     return (
-      <div className="rounded-lg border border-border bg-card p-12 text-center">
-        <p className="text-muted-foreground">No problems match your filters</p>
+      <div className="rounded-2xl border-2 border-dashed border-border bg-card p-16 text-center shadow-sm">
+        <div className="w-12 h-12 bg-secondary/50 rounded-full flex items-center justify-center mx-auto mb-4">
+          <Search className="w-6 h-6 text-muted-foreground" />
+        </div>
+        <h3 className="text-lg font-semibold text-foreground">No matches found</h3>
+        <p className="text-muted-foreground text-sm max-w-xs mx-auto mt-2">
+          Try adjusting your filters or search terms to find what you're looking for.
+        </p>
       </div>
     )
   }
 
   return (
-    <div className="space-y-2">
-      <div className="text-xs text-muted-foreground font-mono px-1">
-        Showing {questions.length} of {totalCount} problems
+    <div className="space-y-3">
+      <div className="flex items-center justify-between px-2">
+        <div className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest">
+          Showing {questions.length} problems
+        </div>
+        <div className="flex items-center gap-4 text-[10px] text-muted-foreground font-bold uppercase tracking-widest hidden sm:flex">
+          <span className="w-24 text-center">Difficulty</span>
+          <span className="w-20 text-right">Frequency</span>
+        </div>
       </div>
 
-      <div className="space-y-2 border border-border rounded-lg bg-card divide-y divide-border overflow-hidden">
-        {questions.map(question => (
+      <div className="space-y-2">
+        {questions.map((question, index) => (
           <a
             key={question.id}
             href={question.leetcodeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group px-4 py-3 flex items-center justify-between hover:bg-secondary/50 transition-colors"
+            className="group px-4 py-4 flex items-center justify-between bg-card border border-border rounded-xl hover:border-primary/50 hover:shadow-md transition-all duration-200"
           >
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-3 mb-2">
-                <h3 className="text-sm font-medium text-foreground group-hover:text-accent truncate">
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-mono text-muted-foreground/60 w-6 hidden md:block">
+                  {index + 1}
+                </span>
+                <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate pr-2">
                   {question.title}
                 </h3>
-                <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-accent flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-all transform translate-x-[-10px] group-hover:translate-x-0" />
               </div>
-              <div className="flex items-center gap-2 flex-wrap">
-                <span
-                  className={`text-xs font-medium px-2 py-0.5 rounded border ${getDifficultyColor(
-                    question.difficulty
-                  )}`}
-                >
-                  {question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1)}
-                </span>
-                <span className="text-xs text-muted-foreground font-mono">
-                  {getTimePeriodLabel(question.timePeriod)}
-                </span>
-                {question.topics.map(topic => (
-                  <span
-                    key={topic}
-                    className="text-xs px-2 py-0.5 rounded bg-secondary/50 text-muted-foreground"
-                  >
-                    {topic}
+              <div className="flex items-center gap-3 mt-2 flex-wrap">
+                <div className="flex items-center gap-1">
+                  <Circle className={`w-2.5 h-2.5 fill-current ${getDifficultyColor(question.difficulty)}`} />
+                  <span className={`text-[11px] font-bold capitalize ${getDifficultyColor(question.difficulty)}`}>
+                    {question.difficulty}
                   </span>
+                </div>
+                
+                {question.topics.slice(0, 3).map(topic => (
+                  <div
+                    key={topic}
+                    className="flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-secondary/50 text-muted-foreground border border-border/50"
+                  >
+                    <Tag className="w-2.5 h-2.5" />
+                    {topic}
+                  </div>
                 ))}
+                {question.topics.length > 3 && (
+                  <span className="text-[10px] text-muted-foreground/60">
+                    +{question.topics.length - 3} more
+                  </span>
+                )}
               </div>
             </div>
-            <div className="flex-shrink-0 ml-4 text-right">
-              <div className="text-xs text-muted-foreground font-mono">
-                {question.frequency}x
+            
+            <div className="flex items-center gap-8 ml-4">
+              <div className="flex flex-col items-end sm:w-20 hidden sm:flex">
+                <div className="flex items-center gap-1.5 text-xs font-bold text-foreground">
+                  <TrendingUp className="w-3.5 h-3.5 text-primary" />
+                  {Math.round(question.frequency * 100) / 100}
+                </div>
+                <div className="text-[9px] text-muted-foreground uppercase font-bold tracking-tighter">Frequency</div>
               </div>
             </div>
           </a>
@@ -97,3 +107,5 @@ export default function QuestionList({ questions, totalCount }: QuestionListProp
     </div>
   )
 }
+
+import { Search } from 'lucide-react'
