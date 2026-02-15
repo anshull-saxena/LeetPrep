@@ -2,16 +2,19 @@ export interface Question {
   id: string
   title: string
   difficulty: 'easy' | 'medium' | 'hard'
-  frequency: number
   leetcodeUrl: string
-  timePeriod: 'last-6-months' | '1-year' | 'all-time'
+  companies: {
+    [company: string]: {
+      [duration:string]: string
+    }
+  }
   topics: string[]
 }
 
 export interface Company {
   id: string
   name: string
-  questions: Question[]
+  // Questions are now fetched separately
 }
 
 export const sampleData: Company[] = [];

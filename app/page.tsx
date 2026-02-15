@@ -13,7 +13,6 @@ export default function Home() {
   const [questions, setQuestions] = useState<Question[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [difficultyFilter, setDifficultyFilter] = useState<string[]>(['easy', 'medium', 'hard'])
-  const [timeFilter, setTimeFilter] = useState<string>('all-time')
   const [selectedTopic, setSelectedTopic] = useState<string>('All')
   const [loading, setLoading] = useState(true)
   const [questionsLoading, setQuestionsLoading] = useState(false)
@@ -33,7 +32,7 @@ export default function Home() {
     loadCompanies()
   }, [])
 
-  // Load questions when company or time filter changes
+  // Load questions when company or search query changes
   useEffect(() => {
     if (!selectedCompanyId) {
       setQuestions([])
@@ -43,7 +42,7 @@ export default function Home() {
     async function loadQuestions() {
       setQuestionsLoading(true)
       try {
-        const data = await fetchQuestions(selectedCompanyId!, timeFilter)
+        const data = await fetchQuestions(selectedCompanyId!, searchQuery)
         setQuestions(data)
       } catch (error) {
         console.error('Failed to load questions', error)
@@ -54,20 +53,12 @@ export default function Home() {
     }
 
     loadQuestions()
-  }, [selectedCompanyId, timeFilter])
+  }, [selectedCompanyId, searchQuery])
 
   const filteredQuestions = useMemo(() => {
     if (!questions.length) return []
 
     let result = questions
-
-    // Filter by search query
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase()
-      result = result.filter(q =>
-        q.title.toLowerCase().includes(query) || q.id.includes(query)
-      )
-    }
 
     // Filter by difficulty
     result = result.filter(q => difficultyFilter.includes(q.difficulty))
@@ -78,7 +69,7 @@ export default function Home() {
     }
 
     return result
-  }, [questions, searchQuery, difficultyFilter, selectedTopic])
+  }, [questions, difficultyFilter, selectedTopic])
 
   const allTopics = useMemo(() => {
     const topics = new Set<string>()
@@ -166,8 +157,6 @@ export default function Home() {
                   onSearchChange={setSearchQuery}
                   selectedDifficulties={difficultyFilter}
                   onDifficultyChange={setDifficultyFilter}
-                  selectedTime={timeFilter}
-                  onTimeChange={setTimeFilter}
                 />
 
                 {/* Topic Tabs */}
@@ -203,6 +192,7 @@ export default function Home() {
                 <QuestionList
                   questions={filteredQuestions}
                   totalCount={questions.length}
+                  selectedCompanyId={selectedCompanyId}
                 />
               )}
             </>
@@ -214,7 +204,7 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-foreground mb-2">Ready to start?</h2>
               <p className="text-muted-foreground max-w-sm mx-auto text-sm">
                 Select a company from the sidebar to view their most frequently asked LeetCode questions categorized by DSA topics.
-              </p>
+              -              </p>
             </div>
           )}
         </div>

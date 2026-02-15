@@ -1,15 +1,13 @@
 'use client'
 
 import { Input } from '@/components/ui/input'
-import { Filter, Clock, Search } from 'lucide-react'
+import { Filter, Search } from 'lucide-react'
 
 interface FilterBarProps {
   searchQuery: string
   onSearchChange: (query: string) => void
   selectedDifficulties: string[]
   onDifficultyChange: (difficulties: string[]) => void
-  selectedTime: string
-  onTimeChange: (time: string) => void
 }
 
 const difficultyOptions = [
@@ -18,19 +16,11 @@ const difficultyOptions = [
   { value: 'hard', label: 'Hard', color: 'border-red-500/30 text-red-600 dark:text-red-400', active: 'bg-red-500/20' },
 ]
 
-const timeOptions = [
-  { value: 'all-time', label: 'All Time' },
-  { value: 'last-6-months', label: 'Last 6 Months' },
-  { value: '1-year', label: '1 Year' },
-]
-
 export default function FilterBar({
   searchQuery,
   onSearchChange,
   selectedDifficulties,
   onDifficultyChange,
-  selectedTime,
-  onTimeChange,
 }: FilterBarProps) {
   const toggleDifficulty = (difficulty: string) => {
     if (selectedDifficulties.includes(difficulty)) {
@@ -69,24 +59,6 @@ export default function FilterBar({
               {option.label}
             </button>
           ))}
-        </div>
-
-        <div className="h-6 w-px bg-border hidden md:block" />
-
-        {/* Time Period Filter */}
-        <div className="flex items-center gap-2 group">
-          <Clock className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-          <select
-            value={selectedTime}
-            onChange={(e) => onTimeChange(e.target.value)}
-            className="bg-transparent text-sm font-medium text-foreground outline-none cursor-pointer hover:text-primary transition-colors"
-          >
-            {timeOptions.map(option => (
-              <option key={option.value} value={option.value} className="bg-card">
-                {option.label}
-              </option>
-            ))}
-          </select>
         </div>
       </div>
     </div>
