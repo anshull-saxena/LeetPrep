@@ -30,7 +30,7 @@ export async function fetchQuestions(company?: string, search?: string): Promise
     return questions.map((question: any) => ({
         ...question,
         difficulty: question.difficulty.toLowerCase(),
-        topics: getTopics(question.id, question.title)
+        topics: getTopics(question.id)
     }));
   } catch (error) {
     console.error('Error fetching questions:', error);

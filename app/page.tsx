@@ -2,10 +2,11 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import CompanySelector from '@/components/company-selector'
-import QuestionList from '@/components/question-list'
+import QuestionMap from '@/components/question-map'
 import FilterBar from '@/components/filter-bar'
 import { Company, Question } from '@/lib/data'
 import { fetchCompanies, fetchQuestions } from '@/lib/api'
+import { Node, Edge } from 'reactflow'
 
 export default function Home() {
   const [companies, setCompanies] = useState<Company[]>([])
@@ -77,6 +78,58 @@ export default function Home() {
     questions.forEach(q => q.topics.forEach(t => topics.add(t)))
     return Array.from(topics).sort()
   }, [questions])
+
+  const { nodes, edges } = useMemo(() => {
+    if (!filteredQuestions.length) return { nodes: [], edges: [] };
+
+    const nodes: Node[] = [];
+    const edges: Edge[] = [];
+    let yOffset = 0;
+
+    const questionsByTopic = filteredQuestions.reduce((acc, question) => {
+      const topic = question.topics[0] || 'Miscellaneous';
+      if (!acc[topic]) {
+        acc[topic] = [];
+      }
+      acc[topic].push(question);
+      return acc;
+    }, {} as Record<string, Question[]>);
+
+    Object.entries(questionsByTopic).forEach(([topic, topicQuestions]) => {
+      nodes.push({
+        id: `topic-${topic}`,
+        data: { label: topic },
+        position: { x: -200, y: yOffset + 50 },
+        style: {
+          background: '#1a1a1a',
+          color: 'white',
+          width: 150,
+          textAlign: 'center',
+          fontWeight: 'bold',
+          fontSize: '1.2rem',
+        },
+      });
+
+      topicQuestions.forEach((question, index) => {
+        nodes.push({
+          id: question.id,
+          data: { label: question.title, id: question.id, difficulty: question.difficulty },
+          position: { x: index * 250, y: yOffset },
+          type: 'custom',
+        });
+        if (index > 0) {
+          edges.push({
+            id: `e${topicQuestions[index - 1].id}-${question.id}`,
+            source: topicQuestions[index - 1].id,
+            target: question.id,
+          });
+        }
+      });
+      yOffset += 200;
+    });
+
+    return { nodes, edges };
+  }, [filteredQuestions]);
 
   const selectedCompanyName = companies.find(c => c.id === selectedCompanyId)?.name
 
@@ -189,10 +242,10 @@ export default function Home() {
                   <p className="text-muted-foreground animate-pulse text-sm">Preparing custom roadmap...</p>
                 </div>
               ) : (
-                <QuestionList
+                <QuestionMap
+                  nodes={nodes}
+                  edges={edges}
                   questions={filteredQuestions}
-                  totalCount={questions.length}
-                  selectedCompanyId={selectedCompanyId}
                 />
               )}
             </>
