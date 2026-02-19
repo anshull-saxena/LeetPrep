@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, createContext, useContext, ReactNode, createElement } from 'react'
 import { doc, setDoc, onSnapshot } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
 import { useAuth } from '@/components/auth-provider'
@@ -9,6 +9,22 @@ import confetti from 'canvas-confetti'
 const STORAGE_KEY = 'completed-questions-v1'
 
 type SyncStatus = 'local' | 'syncing' | 'synced' | 'offline'
+
+interface CompletionContextType {
+  completed: Set<string>
+  toggleCompletion: (questionId: string) => void
+  isCompleted: (questionId: string) => boolean
+  isLoaded: boolean
+  syncStatus: SyncStatus
+}
+
+const CompletionContext = createContext<CompletionContextType>({
+  completed: new Set(),
+  toggleCompletion: () => {},
+  isCompleted: () => false,
+  isLoaded: false,
+  syncStatus: 'local',
+})
 
 // Confetti celebration effect
 const triggerConfetti = () => {
@@ -43,7 +59,7 @@ const triggerConfetti = () => {
   }, 250)
 }
 
-export const useCompletion = () => {
+export function CompletionProvider({ children }: { children: ReactNode }) {
   const [completed, setCompleted] = useState<Set<string>>(new Set())
   const [isLoaded, setIsLoaded] = useState(false)
   const [syncStatus, setSyncStatus] = useState<SyncStatus>('local')
@@ -95,7 +111,7 @@ export const useCompletion = () => {
             try {
               const localSet = new Set<string>(JSON.parse(localStored))
               const merged = new Set([...cloudSet, ...localSet])
-              
+
               if (merged.size !== cloudSet.size) {
                 console.log(`Merging local (${localSet.size}) and cloud (${cloudSet.size}) data. New size: ${merged.size}`)
                 // Local has items cloud doesn't — push merged set
@@ -108,7 +124,7 @@ export const useCompletion = () => {
                   console.error('Failed to push merged data:', err)
                 })
               }
-              
+
               setCompleted(merged)
               localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(merged)))
             } catch (e) {
@@ -191,5 +207,9 @@ export const useCompletion = () => {
 
   const isCompleted = useCallback((questionId: string) => completed.has(questionId), [completed])
 
-  return { completed, toggleCompletion, isCompleted, isLoaded, syncStatus }
+  return createElement(CompletionContext.Provider, {
+    value: { completed, toggleCompletion, isCompleted, isLoaded, syncStatus },
+  }, children)
 }
+
+export const useCompletion = () => useContext(CompletionContext)
