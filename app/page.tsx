@@ -29,6 +29,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useCompletion } from '@/hooks/use-completion'
+import { Progress } from '@/components/ui/progress'
 
 import {
   PieChart,
@@ -121,6 +122,27 @@ export default function Home() {
       return true
     })
   }, [questions, selectedCompanyId, timeframe, searchQuery, difficultyFilter, statusFilter, isCompleted])
+
+  // New stats calculated for the whole company (not affected by search/filters)
+  const companyQuestions = useMemo(() => {
+    if (!questions.length || !selectedCompanyId) return []
+    return questions.filter(q => q.companies[selectedCompanyId]?.[timeframe])
+  }, [questions, selectedCompanyId, timeframe])
+
+  const companyStats = useMemo(() => {
+    const total = companyQuestions.length
+    const completed = companyQuestions.filter(q => isCompleted(q.id)).length
+    const percentage = total > 0 ? (completed / total) * 100 : 0
+    return { total, completed, percentage }
+  }, [companyQuestions, isCompleted])
+
+  const maxFrequencyInCompany = useMemo(() => {
+    if (!companyQuestions.length || !selectedCompanyId) return 0.000001
+    return Math.max(
+      ...companyQuestions.map(q => parseFloat(q.companies[selectedCompanyId]?.[timeframe] || '0')),
+      0.000001
+    )
+  }, [companyQuestions, selectedCompanyId, timeframe])
 
   const stats = useMemo(() => {
     const total = filteredQuestions.length
@@ -273,18 +295,13 @@ export default function Home() {
                     </CardHeader>
                     <CardContent>
                       <div className="flex items-end gap-3 mb-4">
-                        <span className="text-5xl font-black tracking-tighter">{Math.round((stats.completed / stats.total) * 100) || 0}%</span>
+                        <span className="text-5xl font-black tracking-tighter">{Math.round(companyStats.percentage)}%</span>
                         <span className="text-muted-foreground font-bold pb-2">Completed</span>
                       </div>
-                      <div className="h-3 w-full bg-muted rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-primary transition-all duration-1000 ease-out" 
-                          style={{ width: `${(stats.completed / stats.total) * 100}%` }}
-                        />
-                      </div>
+                      <Progress value={companyStats.percentage} className="h-3 shadow-inner shadow-black/5" />
                       <div className="flex justify-between mt-3 text-xs font-bold text-muted-foreground">
-                        <span>{stats.completed} SOLVED</span>
-                        <span>{stats.total - stats.completed} REMAINING</span>
+                        <span>{companyStats.completed} SOLVED</span>
+                        <span>{companyStats.total - companyStats.completed} REMAINING</span>
                       </div>
                     </CardContent>
                   </Card>
@@ -381,6 +398,7 @@ export default function Home() {
                   companyId={selectedCompanyId} 
                   timeframe={timeframe}
                   loading={questionsLoading}
+                  maxFrequency={maxFrequencyInCompany}
                 />
               </div>
             </div>

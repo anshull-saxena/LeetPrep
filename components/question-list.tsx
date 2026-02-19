@@ -29,9 +29,10 @@ interface QuestionListProps {
   companyId: string
   timeframe: string
   loading?: boolean
+  maxFrequency?: number
 }
 
-export function QuestionList({ questions, companyId, timeframe, loading }: QuestionListProps) {
+export function QuestionList({ questions, companyId, timeframe, loading, maxFrequency: providedMaxFrequency }: QuestionListProps) {
   const { isCompleted, toggleCompletion, isLoaded } = useCompletion()
   const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' }>({
     key: 'frequency',
@@ -70,7 +71,7 @@ export function QuestionList({ questions, companyId, timeframe, loading }: Quest
   }
 
   // Calculate max frequency for progress bar scaling
-  const maxFrequency = Math.max(
+  const maxFrequency = providedMaxFrequency || Math.max(
     ...questions.map((q) => parseFloat(q.companies[companyId]?.[timeframe] || '0')),
     0.000001 // avoid division by zero
   )
@@ -194,11 +195,12 @@ export function QuestionList({ questions, companyId, timeframe, loading }: Quest
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <div className="flex items-center gap-3">
-                            <div className="flex-1 h-1.5 bg-muted/30 rounded-full overflow-hidden">
+                            <div className="flex-1 h-2 bg-muted/20 rounded-full overflow-hidden border border-white/5">
                               <div 
                                 className={cn(
                                   "h-full transition-all duration-1000 ease-out rounded-full",
-                                  frequencyPercent > 70 ? "bg-primary" : "bg-primary/50"
+                                  frequencyPercent > 80 ? "bg-primary shadow-[0_0_10px_rgba(139,92,246,0.3)]" : 
+                                  frequencyPercent > 40 ? "bg-primary/70" : "bg-primary/30"
                                 )} 
                                 style={{ width: `${frequencyPercent}%` }}
                               />
