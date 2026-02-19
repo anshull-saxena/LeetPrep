@@ -2,6 +2,8 @@ import React from "react"
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { AuthProvider } from '@/components/auth-provider'
+import { GridBackground } from '@/components/grid-background'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -38,7 +40,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans antialiased`} suppressHydrationWarning>
-        {children}
+        <AuthProvider>
+          <GridBackground />
+          <div className="relative z-10">
+            {children}
+          </div>
+        </AuthProvider>
         <Analytics />
       </body>
     </html>
