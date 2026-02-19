@@ -282,7 +282,7 @@ export function LandingPage() {
                                 </p>
                                 <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                                     <a
-                                        href="https://github.com/anshulsaxena"
+                                        href="https://github.com/anshull-saxena"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/30 text-sm font-semibold transition-all duration-300"
@@ -293,7 +293,7 @@ export function LandingPage() {
                                         GitHub
                                     </a>
                                     <a
-                                        href="https://linkedin.com/in/anshulsaxena"
+                                        href="https://linkedin.com/in/anshulsaxena0"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/30 text-sm font-semibold transition-all duration-300"
@@ -304,15 +304,13 @@ export function LandingPage() {
                                         LinkedIn
                                     </a>
                                     <a
-                                        href="https://twitter.com/anshulsaxena"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        href="mailto:f20221041@hyderabad.bits-pilani.ac.in?subject=Hello%20from%20LeetPrep"
                                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/30 text-sm font-semibold transition-all duration-300"
                                     >
                                         <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                                         </svg>
-                                        Twitter
+                                        Email
                                     </a>
                                 </div>
                             </div>
