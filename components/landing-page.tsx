@@ -235,8 +235,18 @@ export function LandingPage() {
             </section>
 
             {/* Footer */}
-            <footer className="px-6 md:px-12 py-8 border-t border-white/5 text-center flex flex-col items-center">
-                <LogoText className="mb-3" />
+            <footer className="px-6 md:px-12 py-8 border-t border-white/5 text-center flex flex-col items-center gap-4">
+                <LogoText className="mb-1" />
+                <div className="flex items-center gap-3">
+                    <img
+                        src="/image.png"
+                        alt="Anshul Saxena"
+                        className="h-8 w-8 rounded-full border border-white/10 object-cover"
+                    />
+                    <p className="text-xs text-muted-foreground font-medium">
+                        Created by <span className="text-foreground font-bold">Anshul Saxena</span>
+                    </p>
+                </div>
                 <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest">
                     © 2026 LeetPrep. Built for engineers, by engineers.
                 </p>
