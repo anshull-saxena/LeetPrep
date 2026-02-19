@@ -132,7 +132,7 @@ export function QuestionList({ questions, companyId, timeframe, loading, maxFreq
         <Table>
           <TableHeader className="bg-muted/20">
             <TableRow className="hover:bg-transparent border-b-white/5">
-              <TableHead className="w-[60px] text-center font-black text-[10px] uppercase tracking-wider">Status</TableHead>
+              <TableHead className="w-[50px] md:w-[60px] text-center font-black text-[10px] uppercase tracking-wider">Status</TableHead>
               <TableHead
                 className="cursor-pointer hover:text-primary transition-colors font-black text-[10px] uppercase tracking-wider"
                 onClick={() => requestSort('title')}
@@ -140,18 +140,18 @@ export function QuestionList({ questions, companyId, timeframe, loading, maxFreq
                 Problem {sortConfig.key === 'title' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
               </TableHead>
               <TableHead
-                className="w-[120px] cursor-pointer hover:text-primary transition-colors font-black text-[10px] uppercase tracking-wider text-center"
+                className="hidden sm:table-cell w-[100px] md:w-[120px] cursor-pointer hover:text-primary transition-colors font-black text-[10px] uppercase tracking-wider text-center"
                 onClick={() => requestSort('difficulty')}
               >
                 Difficulty {sortConfig.key === 'difficulty' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
               </TableHead>
               <TableHead
-                className="w-[180px] cursor-pointer hover:text-primary transition-colors font-black text-[10px] uppercase tracking-wider"
+                className="hidden md:table-cell w-[150px] md:w-[180px] cursor-pointer hover:text-primary transition-colors font-black text-[10px] uppercase tracking-wider"
                 onClick={() => requestSort('frequency')}
               >
                 Recurrence {sortConfig.key === 'frequency' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
               </TableHead>
-              <TableHead className="w-[60px]"></TableHead>
+              <TableHead className="w-[50px] md:w-[60px]"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -174,7 +174,7 @@ export function QuestionList({ questions, companyId, timeframe, loading, maxFreq
                     animationDelay: `${Math.min(idx * 0.02, 0.5)}s`,
                   }}
                 >
-                  <TableCell className="text-center">
+                  <TableCell className="text-center px-2 md:px-4">
                     <div className={cn(isCelebrating && "celebrate")}>
                       <Checkbox
                         checked={isDone}
@@ -183,29 +183,55 @@ export function QuestionList({ questions, companyId, timeframe, loading, maxFreq
                       />
                     </div>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="px-2 md:px-4">
                     <div className="flex flex-col py-1">
                       <div className="flex items-center gap-2">
                         <span className={cn(
-                          "font-bold text-sm tracking-tight transition-all",
+                          "font-bold text-xs md:text-sm tracking-tight transition-all",
                           isDone && "line-through text-muted-foreground"
                         )}>
                           {q.title}
                         </span>
                         {isHighPriority && !isDone && (
-                          <Badge className="bg-primary/20 text-primary border-none hover:bg-primary/30 text-[9px] h-4 font-black uppercase tracking-tighter">Must Solve</Badge>
+                          <Badge className="bg-primary/20 text-primary border-none hover:bg-primary/30 text-[8px] h-4 font-black uppercase tracking-tighter shrink-0">Must Solve</Badge>
                         )}
+                        <Badge
+                          variant="outline"
+                          className={cn(
+                            "sm:hidden capitalize font-black text-[8px] border-none px-2 py-0 rounded-full tracking-widest shrink-0",
+                            q.difficulty === 'easy' && "bg-emerald-500/10 text-emerald-400",
+                            q.difficulty === 'medium' && "bg-amber-500/10 text-amber-400",
+                            q.difficulty === 'hard' && "bg-rose-500/10 text-rose-400",
+                          )}
+                        >
+                          {q.difficulty.charAt(0)}
+                        </Badge>
                       </div>
                       <div className="flex gap-1.5 mt-1.5 flex-wrap">
-                        {q.topics.slice(0, 3).map(t => (
-                          <span key={t} className="text-[9px] font-bold text-muted-foreground/80 bg-muted/40 px-2 py-0.5 rounded-full border border-white/5">
+                        {q.topics.slice(0, 2).map(t => (
+                          <span key={t} className="text-[8px] md:text-[9px] font-bold text-muted-foreground/80 bg-muted/40 px-1.5 md:px-2 py-0.5 rounded-full border border-white/5">
                             {t}
                           </span>
                         ))}
                       </div>
+                      <div className="md:hidden mt-2 flex items-center gap-2">
+                        <div className="flex-1 h-1 bg-muted/20 rounded-full overflow-hidden border border-white/5 max-w-[100px]">
+                          <div
+                            className={cn(
+                              "h-full transition-all duration-1000 ease-out rounded-full",
+                              frequencyPercent > 80 ? "bg-primary shadow-[0_0_10px_rgba(139,92,246,0.3)]" :
+                              frequencyPercent > 40 ? "bg-primary/70" : "bg-primary/30"
+                            )}
+                            style={{ width: `${frequencyPercent}%` }}
+                          />
+                        </div>
+                        <span className="text-[8px] font-black text-muted-foreground tabular-nums">
+                          {Math.round(frequencyPercent)}%
+                        </span>
+                      </div>
                     </div>
                   </TableCell>
-                  <TableCell className="text-center">
+                  <TableCell className="hidden sm:table-cell text-center">
                     <Badge
                       variant="outline"
                       className={cn(
@@ -218,7 +244,7 @@ export function QuestionList({ questions, companyId, timeframe, loading, maxFreq
                       {q.difficulty}
                     </Badge>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="hidden md:table-cell">
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger asChild>
@@ -244,8 +270,8 @@ export function QuestionList({ questions, companyId, timeframe, loading, maxFreq
                       </Tooltip>
                     </TooltipProvider>
                   </TableCell>
-                  <TableCell>
-                    <Button variant="ghost" size="icon" asChild className="h-9 w-9 rounded-xl opacity-0 group-hover:opacity-100 transition-all hover:bg-primary/10 hover:text-primary">
+                  <TableCell className="px-2 md:px-4">
+                    <Button variant="ghost" size="icon" asChild className="h-8 w-8 md:h-9 md:w-9 rounded-xl md:opacity-0 group-hover:opacity-100 transition-all hover:bg-primary/10 hover:text-primary">
                       <a href={q.leetcodeUrl} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="w-4 h-4" />
                       </a>

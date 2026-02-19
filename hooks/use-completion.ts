@@ -78,6 +78,7 @@ export const useCompletion = () => {
     }
 
     setSyncStatus('syncing')
+    console.log(`Starting sync for user: ${user.uid}`)
     const docRef = doc(db, 'users', user.uid)
 
     const unsubscribe = onSnapshot(
@@ -85,42 +86,68 @@ export const useCompletion = () => {
       (snapshot) => {
         if (snapshot.exists()) {
           const cloudData = snapshot.data()
+          console.log('Received cloud data:', cloudData)
           const cloudSet = new Set<string>(cloudData.completedQuestions || [])
 
-          // Merge with localStorage on first sync
+          // Merge with localStorage on sync
           const localStored = localStorage.getItem(STORAGE_KEY)
           if (localStored) {
-            const localSet = new Set<string>(JSON.parse(localStored))
-            const merged = new Set([...cloudSet, ...localSet])
-            if (merged.size !== cloudSet.size) {
-              // Local has items cloud doesn't — push merged set
-              setDoc(docRef, {
-                completedQuestions: Array.from(merged),
-                updatedAt: new Date().toISOString(),
-              }, { merge: true })
+            try {
+              const localSet = new Set<string>(JSON.parse(localStored))
+              const merged = new Set([...cloudSet, ...localSet])
+              
+              if (merged.size !== cloudSet.size) {
+                console.log(`Merging local (${localSet.size}) and cloud (${cloudSet.size}) data. New size: ${merged.size}`)
+                // Local has items cloud doesn't — push merged set
+                setDoc(docRef, {
+                  completedQuestions: Array.from(merged),
+                  updatedAt: new Date().toISOString(),
+                }, { merge: true }).then(() => {
+                  console.log('Successfully pushed merged data to cloud')
+                }).catch(err => {
+                  console.error('Failed to push merged data:', err)
+                })
+              }
+              
+              setCompleted(merged)
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(merged)))
+            } catch (e) {
+              console.error('Failed to parse local storage during merge', e)
+              setCompleted(cloudSet)
             }
-            setCompleted(merged)
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(merged)))
           } else {
+            console.log('No local data to merge, using cloud data')
             setCompleted(cloudSet)
             localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(cloudSet)))
           }
         } else {
           // No cloud data yet — push local data
+          console.log('No cloud data found for user, checking local data...')
           const localStored = localStorage.getItem(STORAGE_KEY)
           if (localStored) {
-            const localSet = new Set<string>(JSON.parse(localStored))
-            if (localSet.size > 0) {
-              setDoc(docRef, {
-                completedQuestions: Array.from(localSet),
-                updatedAt: new Date().toISOString(),
-              })
+            try {
+              const localSet = new Set<string>(JSON.parse(localStored))
+              if (localSet.size > 0) {
+                console.log(`Pushing ${localSet.size} local items to new cloud profile`)
+                setDoc(docRef, {
+                  completedQuestions: Array.from(localSet),
+                  updatedAt: new Date().toISOString(),
+                }).then(() => {
+                  console.log('Successfully initialized cloud profile with local data')
+                }).catch(err => {
+                  console.error('Failed to initialize cloud profile:', err)
+                })
+                setCompleted(localSet)
+              }
+            } catch (e) {
+              console.error('Failed to parse local storage', e)
             }
           }
         }
         setSyncStatus('synced')
       },
-      () => {
+      (error) => {
+        console.error('Firestore snapshot error:', error)
         setSyncStatus('offline')
       }
     )
