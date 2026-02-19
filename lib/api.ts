@@ -9,7 +9,7 @@ export async function fetchCompanies(): Promise<Company[]> {
     
     return Object.keys(data.companies).map(id => ({
       id,
-      name: id.charAt(0).toUpperCase() + id.slice(1),
+      name: id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
     })).sort((a, b) => a.name.localeCompare(b.name));
   } catch (error) {
     console.error('Error fetching companies:', error);

@@ -9,7 +9,8 @@ import {
   Filter,
   BarChart3,
   ListTodo,
-  CheckCircle2
+  CheckCircle2,
+  Zap
 } from 'lucide-react'
 
 import { Company, Question } from '@/lib/data'
@@ -37,7 +38,20 @@ import {
   Tooltip as RechartsTooltip,
 } from 'recharts'
 
+export default function Home() {
+  const [companies, setCompanies] = useState<Company[]>([])
+  const [selectedCompanyId, setSelectedCompanyId] = useState<string | null>(null)
+  const [questions, setQuestions] = useState<Question[]>([])
+  const [searchQuery, setSearchQuery] = useState('')
+  const [difficultyFilter, setDifficultyFilter] = useState<string>('all')
+  const [statusFilter, setStatusFilter] = useState<string>('all')
+  const [timeframe, setTimeframe] = useState<string>('alltime')
+  const [loading, setLoading] = useState(true)
+  const [questionsLoading, setQuestionsLoading] = useState(false)
   const [companySearch, setCompanySearch] = useState('')
+  const { isCompleted } = useCompletion()
+
+  const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#0088fe']
 
   // Load companies on mount
   useEffect(() => {
@@ -47,7 +61,8 @@ import {
         setCompanies(data)
         // Default to Amazon if nothing selected
         if (data.length > 0 && !selectedCompanyId) {
-          setSelectedCompanyId('amazon')
+          const hasAmazon = data.find(c => c.id.toLowerCase() === 'amazon')
+          setSelectedCompanyId(hasAmazon ? hasAmazon.id : data[0].id)
         }
       } catch (error) {
         console.error('Failed to load companies', error)
@@ -58,13 +73,80 @@ import {
     loadCompanies()
   }, [])
 
+  // Load questions when company changes
+  useEffect(() => {
+    if (!selectedCompanyId) {
+      setQuestions([])
+      return
+    }
+
+    async function loadQuestions() {
+      setQuestionsLoading(true)
+      try {
+        const data = await fetchQuestions(selectedCompanyId!, '')
+        setQuestions(data)
+      } catch (error) {
+        console.error('Failed to load questions', error)
+        setQuestions([])
+      } finally {
+        setQuestionsLoading(false)
+      }
+    }
+
+    loadQuestions()
+  }, [selectedCompanyId])
+
   const filteredCompanies = useMemo(() => {
     return companies.filter(c => 
       c.name.toLowerCase().includes(companySearch.toLowerCase())
     )
   }, [companies, companySearch])
 
+  const filteredQuestions = useMemo(() => {
+    if (!questions.length || !selectedCompanyId) return []
+
+    return questions.filter(q => {
+      const hasTimeframeData = q.companies[selectedCompanyId]?.[timeframe]
+      if (!hasTimeframeData) return false
+
+      const matchesSearch = q.title.toLowerCase().includes(searchQuery.toLowerCase())
+      if (!matchesSearch) return false
+
+      if (difficultyFilter !== 'all' && q.difficulty !== difficultyFilter) return false
+
+      const completed = isCompleted(q.id)
+      if (statusFilter === 'completed' && !completed) return false
+      if (statusFilter === 'todo' && completed) return false
+
+      return true
+    })
+  }, [questions, selectedCompanyId, timeframe, searchQuery, difficultyFilter, statusFilter, isCompleted])
+
+  const stats = useMemo(() => {
+    const total = filteredQuestions.length
+    const completed = filteredQuestions.filter(q => isCompleted(q.id)).length
+    const easy = filteredQuestions.filter(q => q.difficulty === 'easy').length
+    const medium = filteredQuestions.filter(q => q.difficulty === 'medium').length
+    const hard = filteredQuestions.filter(q => q.difficulty === 'hard').length
+    
+    // Topic distribution for chart
+    const topicMap: Record<string, number> = {}
+    filteredQuestions.forEach(q => {
+      q.topics.forEach(t => {
+        topicMap[t] = (topicMap[t] || 0) + 1
+      })
+    })
+    
+    const topicData = Object.entries(topicMap)
+      .map(([name, value]) => ({ name, value }))
+      .sort((a, b) => b.value - a.value)
+      .slice(0, 5) // Top 5 topics
+
+    return { total, completed, easy, medium, hard, topicData }
+  }, [filteredQuestions, isCompleted])
+
   const trendingCompanies = ['amazon', 'google', 'meta', 'apple', 'microsoft', 'netflix', 'uber', 'airbnb']
+  const selectedCompanyName = companies.find(c => c.id === selectedCompanyId)?.name
 
   return (
     <div className="flex h-screen bg-background overflow-hidden font-sans">
@@ -333,4 +415,3 @@ import {
     </div>
   )
 }
-

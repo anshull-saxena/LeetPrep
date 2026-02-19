@@ -13,7 +13,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { useCompletion } from '@/hooks/use-completion'
-import { ExternalLink, Loader2, Trophy } from 'lucide-react'
+import { ExternalLink, Loader2, Trophy, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import {
@@ -30,12 +30,6 @@ interface QuestionListProps {
   timeframe: string
   loading?: boolean
 }
-
-import { Badge } from '@/components/ui/badge'
-import { Checkbox } from '@/components/ui/checkbox'
-import { useCompletion } from '@/hooks/use-completion'
-import { ExternalLink, Loader2, Trophy, Zap, Info } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 
 export function QuestionList({ questions, companyId, timeframe, loading }: QuestionListProps) {
   const { isCompleted, toggleCompletion, isLoaded } = useCompletion()
@@ -61,7 +55,53 @@ export function QuestionList({ questions, companyId, timeframe, loading }: Quest
     )
   }
 
-  // ... (keep maxFrequency calculation)
+  if (questions.length === 0) {
+    return (
+      <div className="text-center py-20 bg-muted/30 rounded-xl border border-dashed border-border">
+        <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+          <Trophy className="w-6 h-6 text-muted-foreground" />
+        </div>
+        <h3 className="text-lg font-medium">No questions found</h3>
+        <p className="text-muted-foreground text-sm mt-1">
+          Try adjusting your filters or search query.
+        </p>
+      </div>
+    )
+  }
+
+  // Calculate max frequency for progress bar scaling
+  const maxFrequency = Math.max(
+    ...questions.map((q) => parseFloat(q.companies[companyId]?.[timeframe] || '0')),
+    0.000001 // avoid division by zero
+  )
+
+  const sortedQuestions = [...questions].sort((a, b) => {
+    if (sortConfig.key === 'frequency') {
+      const freqA = parseFloat(a.companies[companyId]?.[timeframe] || '0')
+      const freqB = parseFloat(b.companies[companyId]?.[timeframe] || '0')
+      return sortConfig.direction === 'asc' ? freqA - freqB : freqB - freqA
+    }
+    if (sortConfig.key === 'difficulty') {
+      const difficultyOrder = { easy: 1, medium: 2, hard: 3 }
+      const diffA = difficultyOrder[a.difficulty] || 0
+      const diffB = difficultyOrder[b.difficulty] || 0
+      return sortConfig.direction === 'asc' ? diffA - diffB : diffB - diffA
+    }
+    if (sortConfig.key === 'title') {
+        return sortConfig.direction === 'asc' 
+            ? a.title.localeCompare(b.title) 
+            : b.title.localeCompare(a.title);
+    }
+    return 0
+  })
+
+  const requestSort = (key: string) => {
+    let direction: 'asc' | 'desc' = 'asc'
+    if (sortConfig.key === key && sortConfig.direction === 'asc') {
+      direction = 'desc'
+    }
+    setSortConfig({ key, direction })
+  }
 
   return (
     <div className="space-y-4">
@@ -98,7 +138,7 @@ export function QuestionList({ questions, companyId, timeframe, loading }: Quest
           <TableBody>
             {sortedQuestions.map((q, idx) => {
               const frequency = parseFloat(q.companies[companyId]?.[timeframe] || '0')
-              const frequencyPercent = maxFrequency > 0 ? (frequency / maxFrequency) * 100 : 0
+              const frequencyPercent = (frequency / maxFrequency) * 100
               const isDone = isCompleted(q.id)
               const isHighPriority = idx < 10 && frequencyPercent > 50
 
