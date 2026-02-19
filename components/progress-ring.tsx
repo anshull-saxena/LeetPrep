@@ -51,7 +51,7 @@ export function ProgressRing({ progress, size = 120, strokeWidth = 8, className 
       {/* Center content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="text-2xl font-black tracking-tight gradient-text">
-          {Math.round(progress)}%
+          {progress.toFixed(2)}%
         </span>
         <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">
           Complete

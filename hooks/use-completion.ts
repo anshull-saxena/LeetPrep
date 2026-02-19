@@ -4,10 +4,44 @@ import { useState, useEffect, useCallback } from 'react'
 import { doc, setDoc, onSnapshot } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
 import { useAuth } from '@/components/auth-provider'
+import confetti from 'canvas-confetti'
 
 const STORAGE_KEY = 'completed-questions-v1'
 
 type SyncStatus = 'local' | 'syncing' | 'synced' | 'offline'
+
+// Confetti celebration effect
+const triggerConfetti = () => {
+  const duration = 3000
+  const animationEnd = Date.now() + duration
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 }
+
+  function randomInRange(min: number, max: number) {
+    return Math.random() * (max - min) + min
+  }
+
+  const interval: any = setInterval(function() {
+    const timeLeft = animationEnd - Date.now()
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval)
+    }
+
+    const particleCount = 50 * (timeLeft / duration)
+    
+    // Fire confetti from different positions
+    confetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+    })
+    confetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+    })
+  }, 250)
+}
 
 export const useCompletion = () => {
   const [completed, setCompleted] = useState<Set<string>>(new Set())
@@ -90,10 +124,14 @@ export const useCompletion = () => {
   const toggleCompletion = useCallback((questionId: string) => {
     setCompleted((prev) => {
       const newSet = new Set(prev)
-      if (newSet.has(questionId)) {
+      const wasCompleted = newSet.has(questionId)
+      
+      if (wasCompleted) {
         newSet.delete(questionId)
       } else {
         newSet.add(questionId)
+        // Trigger confetti when completing a question
+        triggerConfetti()
       }
 
       // Save to localStorage
