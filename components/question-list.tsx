@@ -1,112 +1,191 @@
 'use client'
 
+import { useState } from 'react'
 import { Question } from '@/lib/data'
-import { ExternalLink, Tag, TrendingUp, Circle, Search } from 'lucide-react'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import { Badge } from '@/components/ui/badge'
+import { Checkbox } from '@/components/ui/checkbox'
+import { useCompletion } from '@/hooks/use-completion'
+import { ExternalLink, Loader2, Trophy } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Progress } from '@/components/ui/progress'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+import { cn } from '@/lib/utils'
 
 interface QuestionListProps {
   questions: Question[]
-  totalCount: number
-  selectedCompanyId: string | null
+  companyId: string
+  timeframe: string
+  loading?: boolean
 }
 
-const getDifficultyColor = (difficulty: string) => {
-  switch (difficulty) {
-    case 'easy':
-      return 'text-green-500'
-    case 'medium':
-      return 'text-yellow-500'
-    case 'hard':
-      return 'text-red-500'
-    default:
-      return 'text-muted-foreground'
-  }
-}
+import { Badge } from '@/components/ui/badge'
+import { Checkbox } from '@/components/ui/checkbox'
+import { useCompletion } from '@/hooks/use-completion'
+import { ExternalLink, Loader2, Trophy, Zap, Info } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
-export default function QuestionList({ questions, totalCount, selectedCompanyId }: QuestionListProps) {
-  if (questions.length === 0) {
+export function QuestionList({ questions, companyId, timeframe, loading }: QuestionListProps) {
+  const { isCompleted, toggleCompletion, isLoaded } = useCompletion()
+  const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' }>({
+    key: 'frequency',
+    direction: 'desc',
+  })
+
+  if (loading || !isLoaded) {
     return (
-      <div className="rounded-2xl border-2 border-dashed border-border bg-card p-16 text-center shadow-sm">
-        <div className="w-12 h-12 bg-secondary/50 rounded-full flex items-center justify-center mx-auto mb-4">
-          <Search className="w-6 h-6 text-muted-foreground" />
+      <div className="flex flex-col items-center justify-center py-32 space-y-6">
+        <div className="relative">
+           <div className="h-12 w-12 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
+           <div className="absolute inset-0 flex items-center justify-center">
+              <Zap className="h-4 w-4 text-primary animate-pulse" />
+           </div>
         </div>
-        <h3 className="text-lg font-semibold text-foreground">No matches found</h3>
-        <p className="text-muted-foreground text-sm max-w-xs mx-auto mt-2">
-          Try adjusting your filters or search terms to find what you're looking for.
-        </p>
+        <div className="text-center">
+           <p className="text-sm font-black uppercase tracking-[0.2em] text-foreground">Analyzing Patterns</p>
+           <p className="text-xs text-muted-foreground mt-1">Fetching latest interview data...</p>
+        </div>
       </div>
     )
   }
 
-  return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between px-2">
-        <div className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest">
-          Showing {questions.length} problems
-        </div>
-        <div className="flex items-center gap-4 text-[10px] text-muted-foreground font-bold uppercase tracking-widest hidden sm:flex">
-          <span className="w-24 text-center">Difficulty</span>
-          <span className="w-20 text-right">Frequency</span>
-        </div>
-      </div>
+  // ... (keep maxFrequency calculation)
 
-      <div className="space-y-2">
-        {questions.map((question, index) => {
-          const frequency = selectedCompanyId ? question.companies[selectedCompanyId]?.['alltime'] || 'N/A' : 'N/A';
-          return (
-            <a
-              key={question.id}
-              href={question.leetcodeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group px-4 py-4 flex items-center justify-between bg-card border border-border rounded-xl hover:border-primary/50 hover:shadow-md transition-all duration-200"
-            >
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-mono text-muted-foreground/60 w-6 hidden md:block">
-                    {index + 1}
-                  </span>
-                  <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate pr-2">
-                    {question.title}
-                  </h3>
-                  <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-all transform translate-x-[-10px] group-hover:translate-x-0" />
-                </div>
-                <div className="flex items-center gap-3 mt-2 flex-wrap">
-                  <div className="flex items-center gap-1">
-                    <Circle className={`w-2.5 h-2.5 fill-current ${getDifficultyColor(question.difficulty)}`} />
-                    <span className={`text-[11px] font-bold capitalize ${getDifficultyColor(question.difficulty)}`}>
-                      {question.difficulty}
-                    </span>
-                  </div>
-                  
-                  {question.topics.slice(0, 3).map(topic => (
-                    <div
-                      key={topic}
-                      className="flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-secondary/50 text-muted-foreground border border-border/50"
-                    >
-                      <Tag className="w-2.5 h-2.5" />
-                      {topic}
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-2 px-2">
+         <div className="h-2 w-2 rounded-full bg-primary" />
+         <h3 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Priority Questions</h3>
+      </div>
+      <div className="border rounded-[20px] overflow-hidden bg-card/50 backdrop-blur-sm shadow-2xl shadow-foreground/5 border-white/5">
+        <Table>
+          <TableHeader className="bg-muted/30">
+            <TableRow className="hover:bg-transparent border-b-white/5">
+              <TableHead className="w-[60px] text-center font-black text-[10px] uppercase tracking-wider">Status</TableHead>
+              <TableHead 
+                  className="cursor-pointer hover:text-primary transition-colors font-black text-[10px] uppercase tracking-wider"
+                  onClick={() => requestSort('title')}
+              >
+                  Problem {sortConfig.key === 'title' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+              </TableHead>
+              <TableHead 
+                  className="w-[120px] cursor-pointer hover:text-primary transition-colors font-black text-[10px] uppercase tracking-wider text-center"
+                  onClick={() => requestSort('difficulty')}
+              >
+                  Difficulty {sortConfig.key === 'difficulty' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+              </TableHead>
+              <TableHead 
+                  className="w-[180px] cursor-pointer hover:text-primary transition-colors font-black text-[10px] uppercase tracking-wider"
+                  onClick={() => requestSort('frequency')}
+              >
+                  Recurrence {sortConfig.key === 'frequency' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+              </TableHead>
+              <TableHead className="w-[60px]"></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {sortedQuestions.map((q, idx) => {
+              const frequency = parseFloat(q.companies[companyId]?.[timeframe] || '0')
+              const frequencyPercent = maxFrequency > 0 ? (frequency / maxFrequency) * 100 : 0
+              const isDone = isCompleted(q.id)
+              const isHighPriority = idx < 10 && frequencyPercent > 50
+
+              return (
+                <TableRow key={q.id} className={cn(
+                  "group transition-all duration-200 border-b-white/5", 
+                  isDone ? "bg-muted/10 opacity-40" : "hover:bg-primary/[0.02]"
+                )}>
+                  <TableCell className="text-center">
+                    <Checkbox 
+                      checked={isDone} 
+                      onCheckedChange={() => toggleCompletion(q.id)}
+                      className="h-5 w-5 rounded-md border-2 border-muted-foreground/30 data-[state=checked]:bg-primary data-[state=checked]:border-primary transition-all"
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex flex-col py-1">
+                      <div className="flex items-center gap-2">
+                        <span className={cn(
+                          "font-bold text-sm tracking-tight transition-all", 
+                          isDone && "line-through text-muted-foreground"
+                        )}>
+                          {q.title}
+                        </span>
+                        {isHighPriority && !isDone && (
+                          <Badge className="bg-primary/20 text-primary border-none hover:bg-primary/30 text-[9px] h-4 font-black uppercase tracking-tighter animate-in-fade">Must Solve</Badge>
+                        )}
+                      </div>
+                      <div className="flex gap-1.5 mt-1.5 flex-wrap">
+                        {q.topics.slice(0, 3).map(t => (
+                          <span key={t} className="text-[9px] font-bold text-muted-foreground/80 bg-muted/50 px-2 py-0.5 rounded-full border border-white/5">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  ))}
-                  {question.topics.length > 3 && (
-                    <span className="text-[10px] text-muted-foreground/60">
-                      +{question.topics.length - 3} more
-                    </span>
-                  )}
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-8 ml-4">
-                <div className="flex flex-col items-end sm:w-20 hidden sm:flex">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-foreground">
-                    <TrendingUp className="w-3.5 h-3.5 text-primary" />
-                    {frequency}
-                  </div>
-                  <div className="text-[9px] text-muted-foreground uppercase font-bold tracking-tighter">Frequency</div>
-                </div>
-              </div>
-            </a>
-          )
-        })}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    <Badge 
+                      variant="outline" 
+                      className={cn(
+                        "capitalize font-black text-[9px] border-none px-3 py-1 rounded-full tracking-widest",
+                        q.difficulty === 'easy' && "bg-emerald-500/10 text-emerald-500",
+                        q.difficulty === 'medium' && "bg-amber-500/10 text-amber-500",
+                        q.difficulty === 'hard' && "bg-rose-500/10 text-rose-500",
+                      )}
+                    >
+                      {q.difficulty}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <div className="flex items-center gap-3">
+                            <div className="flex-1 h-1.5 bg-muted/30 rounded-full overflow-hidden">
+                              <div 
+                                className={cn(
+                                  "h-full transition-all duration-1000 ease-out rounded-full",
+                                  frequencyPercent > 70 ? "bg-primary" : "bg-primary/50"
+                                )} 
+                                style={{ width: `${frequencyPercent}%` }}
+                              />
+                            </div>
+                            <span className="text-[10px] font-black text-muted-foreground tabular-nums w-8">
+                               {Math.round(frequencyPercent)}%
+                            </span>
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-foreground text-background font-bold text-xs rounded-lg border-none">
+                          <p>Score: {frequency.toFixed(3)}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </TableCell>
+                  <TableCell>
+                    <Button variant="ghost" size="icon" asChild className="h-9 w-9 rounded-xl opacity-0 group-hover:opacity-100 transition-all hover:bg-primary/10 hover:text-primary">
+                      <a href={q.leetcodeUrl} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              )
+            })}
+          </TableBody>
+        </Table>
       </div>
     </div>
   )

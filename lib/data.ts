@@ -5,7 +5,7 @@ export interface Question {
   leetcodeUrl: string
   companies: {
     [company: string]: {
-      [duration:string]: string
+      [duration: string]: string // frequency/relevance score
     }
   }
   topics: string[]

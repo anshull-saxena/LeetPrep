@@ -2,38 +2,37 @@
 
 import { useState, useEffect } from 'react';
 
-const getCompletedQuestions = (): string[] => {
-  if (typeof window === 'undefined') {
-    return [];
-  }
-  const completed = localStorage.getItem('completedQuestions');
-  return completed ? JSON.parse(completed) : [];
-};
-
-const setCompletedQuestions = (completed: string[]) => {
-  if (typeof window !== 'undefined') {
-    localStorage.setItem('completedQuestions', JSON.stringify(completed));
-  }
-};
+const STORAGE_KEY = 'completed-questions-v1';
 
 export const useCompletion = () => {
-  const [completed, setCompleted] = useState<string[]>([]);
+  const [completed, setCompleted] = useState<Set<string>>(new Set());
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setCompleted(getCompletedQuestions());
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        setCompleted(new Set(JSON.parse(stored)));
+      }
+    } catch (e) {
+      console.error('Failed to load completion status', e);
+    } finally {
+      setIsLoaded(true);
+    }
   }, []);
 
-  const markAsComplete = (questionId: string) => {
-    if (!completed.includes(questionId)) {
-      const newCompleted = [...completed, questionId];
-      setCompleted(newCompleted);
-      setCompletedQuestions(newCompleted);
+  const toggleCompletion = (questionId: string) => {
+    const newSet = new Set(completed);
+    if (newSet.has(questionId)) {
+      newSet.delete(questionId);
+    } else {
+      newSet.add(questionId);
     }
+    setCompleted(newSet);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(newSet)));
   };
 
-  const isCompleted = (questionId: string) => {
-    return completed.includes(questionId);
-  };
+  const isCompleted = (questionId: string) => completed.has(questionId);
 
-  return { completed, markAsComplete, isCompleted };
+  return { completed, toggleCompletion, isCompleted, isLoaded };
 };

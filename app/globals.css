@@ -120,7 +120,11 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    background-image: 
+      radial-gradient(at 0% 0%, oklch(0.15 0.05 280 / 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, oklch(0.15 0.05 200 / 0.1) 0px, transparent 50%);
+    background-attachment: fixed;
   }
 }
 
@@ -134,16 +138,29 @@
   }
   
   .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
   }
   .custom-scrollbar::-webkit-scrollbar-track {
     background: transparent;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: oklch(0.25 0 0);
+    background: oklch(0.25 0 0 / 0.4);
     border-radius: 10px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: oklch(0.65 0 0);
+    background: oklch(0.5 0.2 280 / 0.5);
+  }
+
+  .glass-card {
+    @apply bg-card/40 backdrop-blur-xl border border-white/5;
+  }
+  
+  .animate-in-fade {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }
