@@ -267,9 +267,9 @@ export default function Home() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col min-w-0 overflow-auto md:overflow-hidden bg-muted/5">
+      <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-muted/5">
         {/* Mobile Header */}
-        <div className="md:hidden flex items-center justify-between px-6 py-4 border-b border-white/5 bg-background/80 backdrop-blur-md z-20 sticky top-0">
+        <div className="md:hidden flex items-center justify-between px-6 py-4 border-b border-white/5 bg-background/80 backdrop-blur-md z-20 shrink-0">
           <LogoText />
           <Sheet>
             <SheetTrigger asChild>
@@ -302,9 +302,9 @@ export default function Home() {
         </div>
 
         {selectedCompanyId ? (
-          <>
+          <div className="flex flex-col flex-1 min-h-0 overflow-auto custom-scrollbar">
             {/* Header */}
-            <header className="border-b border-white/5 bg-background/80 backdrop-blur-md z-10 p-4 md:p-8">
+            <header className="border-b border-white/5 bg-background/80 backdrop-blur-md z-10 p-4 md:p-8 shrink-0">
               <div className="flex flex-col gap-4 md:gap-8">
                 <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 md:gap-6">
                   <div>
@@ -439,7 +439,7 @@ export default function Home() {
             </header>
 
             {/* Filter Bar */}
-            <div className="px-4 md:px-8 py-4 border-b border-white/5 flex flex-wrap items-center gap-3 md:gap-4 bg-background/80 sticky top-[57px] md:top-0 z-10 backdrop-blur-md">
+            <div className="px-4 md:px-8 py-4 border-b border-white/5 flex flex-wrap items-center gap-3 md:gap-4 bg-background/80 sticky top-0 z-10 backdrop-blur-md shrink-0">
               <div className="relative w-full md:w-[400px] group">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                 <Input
@@ -482,7 +482,7 @@ export default function Home() {
             </div>
 
             {/* Question List */}
-            <div className="md:flex-1 md:overflow-auto p-4 md:p-8 custom-scrollbar">
+            <div className="p-4 md:p-8">
               <div className="max-w-[1400px] mx-auto">
                 <QuestionList
                   questions={filteredQuestions}
@@ -493,7 +493,7 @@ export default function Home() {
                 />
               </div>
             </div>
-          </>
+          </div>
         ) : (
           <div className="flex-1 flex flex-col items-center justify-center p-12 text-center">
             <div className="relative mb-12 animate-in-scale">
