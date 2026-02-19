@@ -548,6 +548,7 @@ export default function Home() {
           </div>
         )}
       </main>
+      <Toaster />
     </div>
   )
 }
