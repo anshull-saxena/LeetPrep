@@ -37,6 +37,8 @@ import { useCompletion } from '@/hooks/use-completion'
 import { useAuth } from '@/components/auth-provider'
 import { ProgressRing } from '@/components/progress-ring'
 import { CommandPalette } from '@/components/command-palette'
+import { useToast } from '@/hooks/use-toast'
+import { Toaster } from '@/components/ui/toaster'
 
 import {
   PieChart,
@@ -58,7 +60,8 @@ export default function Home() {
   const [questionsLoading, setQuestionsLoading] = useState(false)
   const [companySearch, setCompanySearch] = useState('')
   const { isCompleted, syncStatus } = useCompletion()
-  const { user, loading: authLoading, signInWithGoogle, signOut } = useAuth()
+  const { user, loading: authLoading, error: authError, signInWithGoogle, signOut } = useAuth()
+  const { toast } = useToast()
 
   const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#0088fe']
 
@@ -99,6 +102,17 @@ export default function Home() {
     }
     loadQuestions()
   }, [selectedCompanyId])
+
+  // Show toast for authentication errors
+  useEffect(() => {
+    if (authError) {
+      toast({
+        title: 'Authentication Error',
+        description: authError,
+        variant: 'destructive',
+      })
+    }
+  }, [authError, toast])
 
   const filteredCompanies = useMemo(() => {
     return companies.filter(c =>
