@@ -40,6 +40,7 @@ import { CommandPalette } from '@/components/command-palette'
 import { LandingPage } from '@/components/landing-page'
 import { useToast } from '@/hooks/use-toast'
 import { Toaster } from '@/components/ui/toaster'
+import { Logo, LogoText } from '@/components/logo'
 
 import {
   PieChart,
@@ -188,9 +189,7 @@ export default function Home() {
     return (
       <div className="flex h-screen bg-background items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary via-primary to-accent flex items-center justify-center shadow-lg shadow-primary/30 neon-glow-sm animate-pulse">
-            <Code2 className="h-7 w-7 text-primary-foreground" />
-          </div>
+          <Logo className="h-12 w-12 animate-pulse" />
           <div className="flex items-center gap-2">
             <Loader2 className="h-4 w-4 animate-spin text-primary" />
             <span className="text-sm font-bold text-muted-foreground">Loading...</span>
@@ -217,18 +216,7 @@ export default function Home() {
       {/* Sidebar */}
       <aside className="w-80 border-r border-white/5 bg-card/30 backdrop-blur-xl flex flex-col hidden md:flex">
         <div className="p-8 border-b border-white/5 bg-background/50">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary via-primary to-accent flex items-center justify-center shadow-lg shadow-primary/30 neon-glow-sm">
-              <Code2 className="h-6 w-6 text-primary-foreground" />
-            </div>
-            <div>
-              <span className="font-black text-xl tracking-tight gradient-text">LeetPrep</span>
-              <div className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-                <p className="text-[9px] uppercase tracking-[0.2em] font-black text-muted-foreground">Version 2026.1</p>
-              </div>
-            </div>
-          </div>
+          <LogoText className="mb-8" />
 
           {/* Search with Cmd+K hint */}
           <div className="relative group">

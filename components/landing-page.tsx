@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/components/auth-provider'
+import { Logo, LogoText } from '@/components/logo'
 
 function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
     const [count, setCount] = useState(0)
@@ -54,18 +55,7 @@ export function LandingPage() {
         <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
             {/* Nav */}
             <nav className="w-full px-6 md:px-12 py-5 flex items-center justify-between border-b border-white/5 bg-background/80 backdrop-blur-xl sticky top-0 z-50">
-                <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary via-primary to-accent flex items-center justify-center shadow-lg shadow-primary/30 neon-glow-sm">
-                        <Code2 className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                    <div>
-                        <span className="font-black text-xl tracking-tight gradient-text">LeetPrep</span>
-                        <div className="flex items-center gap-1.5">
-                            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-                            <p className="text-[9px] uppercase tracking-[0.2em] font-black text-muted-foreground">Version 2026.1</p>
-                        </div>
-                    </div>
-                </div>
+                <LogoText />
                 <Button
                     onClick={signInWithGoogle}
                     className="h-10 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/30 text-foreground font-bold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 gap-2 px-5"
@@ -245,13 +235,8 @@ export function LandingPage() {
             </section>
 
             {/* Footer */}
-            <footer className="px-6 md:px-12 py-8 border-t border-white/5 text-center">
-                <div className="flex items-center justify-center gap-3 mb-3">
-                    <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-primary via-primary to-accent flex items-center justify-center">
-                        <Code2 className="h-4 w-4 text-primary-foreground" />
-                    </div>
-                    <span className="font-black text-sm tracking-tight gradient-text">LeetPrep</span>
-                </div>
+            <footer className="px-6 md:px-12 py-8 border-t border-white/5 text-center flex flex-col items-center">
+                <LogoText className="mb-3" />
                 <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest">
                     © 2026 LeetPrep. Built for engineers, by engineers.
                 </p>
