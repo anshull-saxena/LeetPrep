@@ -24,8 +24,8 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
   error: null,
-  signInWithGoogle: async () => {},
-  signOut: async () => {},
+  signInWithGoogle: async () => { },
+  signOut: async () => { },
 })
 
 export const useAuth = () => useContext(AuthContext)
@@ -59,7 +59,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const handleAuthError = (error: AuthError) => {
     let errorMessage = 'Failed to sign in with Google. Please try again.'
-    
+
     switch (error.code) {
       case 'auth/popup-blocked':
         errorMessage = 'Pop-up was blocked. Please allow pop-ups and try again.'
@@ -84,7 +84,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       default:
         errorMessage = `Sign-in failed: ${error.message}`
     }
-    
+
     setError(errorMessage)
     // Clear error after 5 seconds
     setTimeout(() => setError(null), 5000)
@@ -97,15 +97,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       googleProvider.setCustomParameters({
         prompt: 'select_account'
       })
-      
+
       // Try popup first
       try {
         await signInWithPopup(auth, googleProvider)
       } catch (popupError: unknown) {
         const authError = popupError as AuthError
         // If popup fails, try redirect as fallback
-        if (authError.code === 'auth/popup-blocked' || 
-            authError.code === 'auth/popup-closed-by-user') {
+        if (authError.code === 'auth/popup-blocked' ||
+          authError.code === 'auth/popup-closed-by-user') {
           console.log('Popup failed, trying redirect...')
           await signInWithRedirect(auth, googleProvider)
         } else {
@@ -123,6 +123,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       setError(null)
       await firebaseSignOut(auth)
+      // Hard refresh to clear all in-memory state cleanly
+      window.location.reload()
     } catch (error: unknown) {
       const authError = error as AuthError
       console.error('Sign out failed:', authError)

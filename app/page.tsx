@@ -37,6 +37,7 @@ import { useCompletion } from '@/hooks/use-completion'
 import { useAuth } from '@/components/auth-provider'
 import { ProgressRing } from '@/components/progress-ring'
 import { CommandPalette } from '@/components/command-palette'
+import { LandingPage } from '@/components/landing-page'
 import { useToast } from '@/hooks/use-toast'
 import { Toaster } from '@/components/ui/toaster'
 
@@ -182,6 +183,28 @@ export default function Home() {
   const syncLabel = syncStatus === 'synced' ? 'Synced' : syncStatus === 'syncing' ? 'Syncing...' : syncStatus === 'offline' ? 'Offline' : 'Local Only'
   const syncColor = syncStatus === 'synced' ? 'bg-emerald-500' : syncStatus === 'syncing' ? 'bg-amber-400' : syncStatus === 'offline' ? 'bg-red-500' : 'bg-muted-foreground'
 
+  // Show loading state while checking auth
+  if (authLoading) {
+    return (
+      <div className="flex h-screen bg-background items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary via-primary to-accent flex items-center justify-center shadow-lg shadow-primary/30 neon-glow-sm animate-pulse">
+            <Code2 className="h-7 w-7 text-primary-foreground" />
+          </div>
+          <div className="flex items-center gap-2">
+            <Loader2 className="h-4 w-4 animate-spin text-primary" />
+            <span className="text-sm font-bold text-muted-foreground">Loading...</span>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Show landing page for unauthenticated users
+  if (!user) {
+    return <LandingPage />
+  }
+
   return (
     <div className="flex h-screen bg-background overflow-hidden font-sans">
       {/* Command Palette */}
@@ -235,19 +258,17 @@ export default function Home() {
               <button
                 key={company.id}
                 onClick={() => setSelectedCompanyId(company.id)}
-                className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center justify-between group stagger-item ${
-                  selectedCompanyId === company.id
+                className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center justify-between group stagger-item ${selectedCompanyId === company.id
                     ? 'bg-primary text-primary-foreground shadow-xl shadow-primary/20 scale-[1.02] z-10 neon-glow-sm'
                     : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground hover:translate-x-1'
-                }`}
+                  }`}
                 style={{ animationDelay: `${Math.min(index * 0.02, 0.5)}s` }}
               >
                 <span className="flex items-center gap-2">
                   {company.name}
                   {trendingCompanies.includes(company.id.toLowerCase()) && (
-                    <span className={`text-[8px] px-1.5 py-0.5 rounded-full font-black uppercase tracking-tighter ${
-                      selectedCompanyId === company.id ? 'bg-white/20 text-white' : 'bg-primary/10 text-primary'
-                    }`}>Hot</span>
+                    <span className={`text-[8px] px-1.5 py-0.5 rounded-full font-black uppercase tracking-tighter ${selectedCompanyId === company.id ? 'bg-white/20 text-white' : 'bg-primary/10 text-primary'
+                      }`}>Hot</span>
                   )}
                 </span>
                 {selectedCompanyId === company.id ? (
@@ -323,10 +344,10 @@ export default function Home() {
               variant="ghost"
             >
               <svg className="h-4 w-4" viewBox="0 0 24 24">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
-                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4" />
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
               </svg>
               Sign in with Google
             </Button>

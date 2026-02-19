@@ -20,7 +20,7 @@ const triggerConfetti = () => {
     return Math.random() * (max - min) + min
   }
 
-  const interval: any = setInterval(function() {
+  const interval: any = setInterval(function () {
     const timeLeft = animationEnd - Date.now()
 
     if (timeLeft <= 0) {
@@ -28,7 +28,7 @@ const triggerConfetti = () => {
     }
 
     const particleCount = 50 * (timeLeft / duration)
-    
+
     // Fire confetti from different positions
     confetti({
       ...defaults,
@@ -67,6 +67,13 @@ export const useCompletion = () => {
   useEffect(() => {
     if (!user) {
       setSyncStatus('local')
+      // Reset to localStorage-only data when user signs out
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY)
+        setCompleted(stored ? new Set(JSON.parse(stored)) : new Set())
+      } catch {
+        setCompleted(new Set())
+      }
       return
     }
 
@@ -125,7 +132,7 @@ export const useCompletion = () => {
     setCompleted((prev) => {
       const newSet = new Set(prev)
       const wasCompleted = newSet.has(questionId)
-      
+
       if (wasCompleted) {
         newSet.delete(questionId)
       } else {
