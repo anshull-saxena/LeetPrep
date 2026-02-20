@@ -61,7 +61,7 @@ export function SidebarContent({
       </div>
 
       {/* Company List */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-1 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto p-4 space-y-1 custom-scrollbar smooth-scroll gpu-accelerate">
         {loading ? (
           <div className="space-y-3 px-2">
             {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (

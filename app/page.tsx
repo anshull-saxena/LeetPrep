@@ -302,9 +302,9 @@ export default function Home() {
         </div>
 
         {selectedCompanyId ? (
-          <div className="flex flex-col flex-1 min-h-0 overflow-auto custom-scrollbar">
+          <div className="flex flex-col flex-1 min-h-0 overflow-auto custom-scrollbar smooth-scroll gpu-accelerate">
             {/* Header */}
-            <header className="border-b border-white/5 bg-background/80 backdrop-blur-md z-10 p-4 md:p-8 shrink-0">
+            <header className="border-b border-white/5 bg-background/50 backdrop-blur-sm z-10 p-4 md:p-8 shrink-0">
               <div className="flex flex-col gap-4 md:gap-8">
                 <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 md:gap-6">
                   <div>
@@ -439,7 +439,7 @@ export default function Home() {
             </header>
 
             {/* Filter Bar */}
-            <div className="px-4 md:px-8 py-4 border-b border-white/5 flex flex-wrap items-center gap-3 md:gap-4 bg-background/80 sticky top-0 z-10 backdrop-blur-md shrink-0">
+            <div className="px-4 md:px-8 py-4 border-b border-white/5 flex flex-wrap items-center gap-3 md:gap-4 bg-background/50 sticky top-0 z-10 backdrop-blur-sm shrink-0 gpu-accelerate">
               <div className="relative w-full md:w-[400px] group">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                 <Input
@@ -482,8 +482,8 @@ export default function Home() {
             </div>
 
             {/* Question List */}
-            <div className="p-4 md:p-8">
-              <div className="max-w-[1400px] mx-auto">
+            <div className="flex-1 min-h-0 px-4 md:px-8 pb-8">
+              <div className="max-w-[1400px] mx-auto h-full">
                 <QuestionList
                   questions={filteredQuestions}
                   companyId={selectedCompanyId}

@@ -52,9 +52,9 @@ export function LandingPage() {
     }, [])
 
     return (
-        <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
+        <div className="min-h-screen flex flex-col bg-background overflow-x-hidden smooth-scroll">
             {/* Nav */}
-            <nav className="w-full px-6 md:px-12 py-5 flex items-center justify-between border-b border-white/5 bg-background/80 backdrop-blur-xl sticky top-0 z-50">
+            <nav className="w-full px-6 md:px-12 py-5 flex items-center justify-between border-b border-white/5 bg-background/50 backdrop-blur-sm sticky top-0 z-50 gpu-accelerate">
                 <LogoText />
                 <Button
                     onClick={signInWithGoogle}
@@ -74,8 +74,8 @@ export function LandingPage() {
             {/* Hero Section */}
             <section className="flex-1 flex flex-col items-center justify-center px-6 text-center relative py-20 md:py-32">
                 {/* Background orbs */}
-                <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] animate-float pointer-events-none" />
-                <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] animate-float-delayed pointer-events-none" />
+                <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] animate-float pointer-events-none gpu-accelerate" />
+                <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] animate-float-delayed pointer-events-none gpu-accelerate" />
 
                 {/* Badge */}
                 <div className={`mb-8 transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>

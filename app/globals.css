@@ -125,10 +125,31 @@
       radial-gradient(at 0% 0%, oklch(0.15 0.05 280 / 0.15) 0px, transparent 50%),
       radial-gradient(at 100% 0%, oklch(0.15 0.05 200 / 0.1) 0px, transparent 50%);
     background-attachment: fixed;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
 @layer utilities {
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
+  }
+
+  .gpu-accelerate {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  .content-visibility-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px;
+  }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -138,17 +159,19 @@
   }
   
   .custom-scrollbar::-webkit-scrollbar {
-    width: 5px;
+    width: 4px;
+    height: 4px;
   }
   .custom-scrollbar::-webkit-scrollbar-track {
     background: transparent;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: oklch(0.25 0 0 / 0.4);
-    border-radius: 10px;
+    background: oklch(0.25 0 0 / 0.3);
+    border-radius: 20px;
+    transition: background 0.2s ease;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: oklch(0.5 0.2 280 / 0.5);
+    background: oklch(0.5 0.2 280 / 0.4);
   }
 
   .glass-card {
