@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Command } from 'cmdk'
 import { Search, Building2, Code2, Zap, ExternalLink } from 'lucide-react'
 import { Company, Question } from '@/lib/data'

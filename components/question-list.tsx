@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useMemo, memo } from 'react'
+import React, { useState, useCallback, useMemo, memo } from 'react'
 import { Question } from '@/lib/data'
 import {
   Table,

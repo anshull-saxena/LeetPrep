@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { Search, CheckCircle2, Cloud, CloudOff, Loader2, LogOut, Menu } from 'lucide-react'
 import { Company } from '@/lib/data'
 import { LogoText } from '@/components/logo'
