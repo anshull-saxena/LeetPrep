@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, createContext, useContext, ReactNode, createElement } from 'react'
+import { useState, useEffect, useCallback, createContext, useContext, ReactNode } from 'react'
 import { doc, setDoc, onSnapshot } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
 import { useAuth } from '@/components/auth-provider'
@@ -207,9 +207,11 @@ export function CompletionProvider({ children }: { children: ReactNode }) {
 
   const isCompleted = useCallback((questionId: string) => completed.has(questionId), [completed])
 
-  return createElement(CompletionContext.Provider, {
-    value: { completed, toggleCompletion, isCompleted, isLoaded, syncStatus },
-  }, children)
+  return (
+    <CompletionContext.Provider value={{ completed, toggleCompletion, isCompleted, isLoaded, syncStatus }}>
+      {children}
+    </CompletionContext.Provider>
+  )
 }
 
 export const useCompletion = () => useContext(CompletionContext)
