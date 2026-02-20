@@ -4,7 +4,6 @@ import React, { useState, useEffect, useCallback, createContext, useContext, Rea
 import { doc, setDoc, onSnapshot } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
 import { useAuth } from '@/components/auth-provider'
-import confetti from 'canvas-confetti'
 
 const STORAGE_KEY = 'completed-questions-v1'
 
@@ -25,7 +24,10 @@ const CompletionContext = createContext<CompletionContextType>({
 })
 
 // Confetti celebration effect
-const triggerConfetti = () => {
+const triggerConfetti = async () => {
+  if (typeof window === 'undefined') return
+  
+  const confetti = (await import('canvas-confetti')).default
   const duration = 3000
   const animationEnd = Date.now() + duration
   const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 }
