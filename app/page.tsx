@@ -482,8 +482,8 @@ export default function Home() {
             </div>
 
             {/* Question List */}
-            <div className="flex-1 min-h-0 px-4 md:px-8 pb-8">
-              <div className="max-w-[1400px] mx-auto h-full">
+            <div className="px-4 md:px-8 pb-8">
+              <div className="max-w-[1400px] mx-auto">
                 <QuestionList
                   questions={filteredQuestions}
                   companyId={selectedCompanyId}

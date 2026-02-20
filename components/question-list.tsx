@@ -255,15 +255,15 @@ export function QuestionList({ questions, companyId, timeframe, loading, maxFreq
   }
 
   return (
-    <div className="flex flex-col h-full space-y-4">
+    <div className="flex flex-col space-y-4">
       <div className="flex items-center gap-2 px-2 shrink-0">
         <div className="h-2 w-2 rounded-full bg-primary" />
         <h3 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Priority Questions</h3>
       </div>
-            <div className="flex-1 min-h-0 border border-white/5 rounded-[20px] overflow-hidden bg-card/50 backdrop-blur-sm shadow-2xl shadow-foreground/5 gpu-accelerate">
-              <TableVirtuoso
-                data={sortedQuestions}
-                useWindowScroll={false}
+      <div className="border border-white/5 rounded-[20px] overflow-hidden bg-card/50 backdrop-blur-sm shadow-2xl shadow-foreground/5 gpu-accelerate">
+        <TableVirtuoso
+          useWindowScroll
+          data={sortedQuestions}
                 increaseViewportBy={300}
                 components={{
                   Table: (props) => (
