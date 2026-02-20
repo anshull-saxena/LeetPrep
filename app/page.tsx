@@ -238,7 +238,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex h-screen bg-background overflow-hidden font-sans">
+    <div className="flex min-h-screen bg-background font-sans">
       {/* Command Palette */}
       <CommandPalette
         companies={companies}
@@ -247,7 +247,7 @@ export default function Home() {
       />
 
       {/* Sidebar - Desktop */}
-      <aside className="w-80 border-r border-white/5 bg-card/30 backdrop-blur-xl flex flex-col hidden md:flex">
+      <aside className="w-80 border-r border-white/5 bg-card/30 backdrop-blur-xl flex flex-col hidden md:flex fixed h-screen left-0 top-0 z-30">
         <SidebarContent
           companySearch={companySearch}
           setCompanySearch={setCompanySearch}
@@ -267,7 +267,7 @@ export default function Home() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-muted/5">
+      <main className="flex-1 flex flex-col min-w-0 bg-muted/5 md:ml-80">
         {/* Mobile Header */}
         <div className="md:hidden flex items-center justify-between px-6 py-4 border-b border-white/5 bg-background/80 backdrop-blur-md z-20 shrink-0">
           <LogoText />
@@ -302,9 +302,9 @@ export default function Home() {
         </div>
 
         {selectedCompanyId ? (
-          <div className="flex flex-col flex-1 min-h-0 overflow-auto custom-scrollbar smooth-scroll gpu-accelerate">
+          <div className="flex flex-col">
             {/* Header */}
-            <header className="border-b border-white/5 bg-background/50 backdrop-blur-sm z-10 p-4 md:p-8 shrink-0">
+            <header className="border-b border-white/5 bg-background/50 backdrop-blur-sm z-10 p-4 md:p-8">
               <div className="flex flex-col gap-4 md:gap-8">
                 <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 md:gap-6">
                   <div>
@@ -439,7 +439,7 @@ export default function Home() {
             </header>
 
             {/* Filter Bar */}
-            <div className="px-4 md:px-8 py-4 border-b border-white/5 flex flex-wrap items-center gap-3 md:gap-4 bg-background/50 sticky top-0 z-10 backdrop-blur-sm shrink-0 gpu-accelerate">
+            <div className="px-4 md:px-8 py-4 border-b border-white/5 flex flex-wrap items-center gap-3 md:gap-4 bg-background/50 sticky top-0 z-20 backdrop-blur-sm gpu-accelerate">
               <div className="relative w-full md:w-[400px] group">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                 <Input
