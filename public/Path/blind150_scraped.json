@@ -1,0 +1,2067 @@
+{
+  "source_url": "https://neetcode.io/practice/practice/neetcode150",
+  "list": "blind150",
+  "question_count": 150,
+  "questions": [
+    {
+      "list": "blind150",
+      "topic": "Arrays & Hashing",
+      "title": "Contains Duplicate",
+      "difficulty": "Easy",
+      "problem_slug": "duplicate-integer",
+      "neetcode_path": "/problems/duplicate-integer/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/duplicate-integer/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/contains-duplicate/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Arrays & Hashing",
+      "title": "Valid Anagram",
+      "difficulty": "Easy",
+      "problem_slug": "is-anagram",
+      "neetcode_path": "/problems/is-anagram/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/is-anagram/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/valid-anagram/",
+      "companies": [
+        "American Express"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Arrays & Hashing",
+      "title": "Two Sum",
+      "difficulty": "Easy",
+      "problem_slug": "two-integer-sum",
+      "neetcode_path": "/problems/two-integer-sum/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/two-integer-sum/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/two-sum/",
+      "companies": [
+        "Adobe",
+        "Amazon",
+        "Capgemini",
+        "Cognizant",
+        "Google",
+        "Microsoft",
+        "TCS",
+        "Tinkoff",
+        "Wipro",
+        "Yahoo"
+      ],
+      "company_count": 10
+    },
+    {
+      "list": "blind150",
+      "topic": "Arrays & Hashing",
+      "title": "Group Anagrams",
+      "difficulty": "Medium",
+      "problem_slug": "anagram-groups",
+      "neetcode_path": "/problems/anagram-groups/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/anagram-groups/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/group-anagrams/",
+      "companies": [
+        "Affirm",
+        "BlackRock"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Arrays & Hashing",
+      "title": "Top K Frequent Elements",
+      "difficulty": "Medium",
+      "problem_slug": "top-k-elements-in-list",
+      "neetcode_path": "/problems/top-k-elements-in-list/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/top-k-elements-in-list/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/top-k-frequent-elements/",
+      "companies": [
+        "Avito"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Arrays & Hashing",
+      "title": "Encode and Decode Strings",
+      "difficulty": "Medium",
+      "problem_slug": "string-encode-and-decode",
+      "neetcode_path": "/problems/string-encode-and-decode/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/string-encode-and-decode/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/encode-and-decode-strings/",
+      "companies": [
+        "OpenAI"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Arrays & Hashing",
+      "title": "Product of Array Except Self",
+      "difficulty": "Medium",
+      "problem_slug": "products-of-array-discluding-self",
+      "neetcode_path": "/problems/products-of-array-discluding-self/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/products-of-array-discluding-self/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/product-of-array-except-self/",
+      "companies": [
+        "Uber"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Arrays & Hashing",
+      "title": "Valid Sudoku",
+      "difficulty": "Medium",
+      "problem_slug": "valid-sudoku",
+      "neetcode_path": "/problems/valid-sudoku/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/valid-sudoku/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/valid-sudoku/",
+      "companies": [
+        "Samsara",
+        "Udemy"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Arrays & Hashing",
+      "title": "Longest Consecutive Sequence",
+      "difficulty": "Medium",
+      "problem_slug": "longest-consecutive-sequence",
+      "neetcode_path": "/problems/longest-consecutive-sequence/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/longest-consecutive-sequence/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/longest-consecutive-sequence/",
+      "companies": [
+        "Zepto"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Two Pointers",
+      "title": "Valid Palindrome",
+      "difficulty": "Easy",
+      "problem_slug": "is-palindrome",
+      "neetcode_path": "/problems/is-palindrome/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/is-palindrome/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/valid-palindrome/",
+      "companies": [
+        "CleverTap",
+        "HCL"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Two Pointers",
+      "title": "Two Sum II Input Array Is Sorted",
+      "difficulty": "Medium",
+      "problem_slug": "two-integer-sum-ii",
+      "neetcode_path": "/problems/two-integer-sum-ii/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/two-integer-sum-ii/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
+      "companies": [
+        "Zomato"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Two Pointers",
+      "title": "3Sum",
+      "difficulty": "Medium",
+      "problem_slug": "three-integer-sum",
+      "neetcode_path": "/problems/three-integer-sum/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/three-integer-sum/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/3sum/",
+      "companies": [
+        "Agoda"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Two Pointers",
+      "title": "Container With Most Water",
+      "difficulty": "Medium",
+      "problem_slug": "max-water-container",
+      "neetcode_path": "/problems/max-water-container/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/max-water-container/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/container-with-most-water/",
+      "companies": [
+        "SAP"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Two Pointers",
+      "title": "Trapping Rain Water",
+      "difficulty": "Hard",
+      "problem_slug": "trapping-rain-water",
+      "neetcode_path": "/problems/trapping-rain-water/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/trapping-rain-water/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/trapping-rain-water/",
+      "companies": [
+        "Tiktok"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Sliding Window",
+      "title": "Best Time to Buy And Sell Stock",
+      "difficulty": "Easy",
+      "problem_slug": "buy-and-sell-crypto",
+      "neetcode_path": "/problems/buy-and-sell-crypto/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/buy-and-sell-crypto/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+      "companies": [
+        "Accenture",
+        "Akamai",
+        "Bolt",
+        "Comcast",
+        "Morgan Stanley",
+        "Sigmoid",
+        "Zoox"
+      ],
+      "company_count": 7
+    },
+    {
+      "list": "blind150",
+      "topic": "Sliding Window",
+      "title": "Longest Substring Without Repeating Characters",
+      "difficulty": "Medium",
+      "problem_slug": "longest-substring-without-duplicates",
+      "neetcode_path": "/problems/longest-substring-without-duplicates/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/longest-substring-without-duplicates/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+      "companies": [
+        "EPAM Systems",
+        "ServiceNow",
+        "Turing"
+      ],
+      "company_count": 3
+    },
+    {
+      "list": "blind150",
+      "topic": "Sliding Window",
+      "title": "Longest Repeating Character Replacement",
+      "difficulty": "Medium",
+      "problem_slug": "longest-repeating-substring-with-replacement",
+      "neetcode_path": "/problems/longest-repeating-substring-with-replacement/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/longest-repeating-substring-with-replacement/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/longest-repeating-character-replacement/",
+      "companies": [
+        "UiPath"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Sliding Window",
+      "title": "Permutation In String",
+      "difficulty": "Medium",
+      "problem_slug": "permutation-string",
+      "neetcode_path": "/problems/permutation-string/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/permutation-string/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/permutation-in-string/",
+      "companies": [
+        "Yandex"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Sliding Window",
+      "title": "Minimum Window Substring",
+      "difficulty": "Hard",
+      "problem_slug": "minimum-window-with-characters",
+      "neetcode_path": "/problems/minimum-window-with-characters/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/minimum-window-with-characters/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/minimum-window-substring/",
+      "companies": [
+        "Snowflake",
+        "SoFi"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Sliding Window",
+      "title": "Sliding Window Maximum",
+      "difficulty": "Hard",
+      "problem_slug": "sliding-window-maximum",
+      "neetcode_path": "/problems/sliding-window-maximum/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/sliding-window-maximum/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/sliding-window-maximum/",
+      "companies": [
+        "Autoesk",
+        "LINE",
+        "Nutanix"
+      ],
+      "company_count": 3
+    },
+    {
+      "list": "blind150",
+      "topic": "Stack",
+      "title": "Valid Parentheses",
+      "difficulty": "Easy",
+      "problem_slug": "validate-parentheses",
+      "neetcode_path": "/problems/validate-parentheses/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/validate-parentheses/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/valid-parentheses/",
+      "companies": [
+        "Cerner",
+        "Walmart Labs"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Stack",
+      "title": "Min Stack",
+      "difficulty": "Medium",
+      "problem_slug": "minimum-stack",
+      "neetcode_path": "/problems/minimum-stack/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/minimum-stack/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/min-stack/",
+      "companies": [
+        "Odoo"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Stack",
+      "title": "Evaluate Reverse Polish Notation",
+      "difficulty": "Medium",
+      "problem_slug": "evaluate-reverse-polish-notation",
+      "neetcode_path": "/problems/evaluate-reverse-polish-notation/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/evaluate-reverse-polish-notation/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+      "companies": [
+        "Appolo.io",
+        "Canonical",
+        "Citigroup"
+      ],
+      "company_count": 3
+    },
+    {
+      "list": "blind150",
+      "topic": "Stack",
+      "title": "Daily Temperatures",
+      "difficulty": "Medium",
+      "problem_slug": "daily-temperatures",
+      "neetcode_path": "/problems/daily-temperatures/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/daily-temperatures/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/daily-temperatures/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Stack",
+      "title": "Car Fleet",
+      "difficulty": "Medium",
+      "problem_slug": "car-fleet",
+      "neetcode_path": "/problems/car-fleet/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/car-fleet/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/car-fleet/",
+      "companies": [
+        "BNY Mellon",
+        "Ripple"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Stack",
+      "title": "Largest Rectangle In Histogram",
+      "difficulty": "Hard",
+      "problem_slug": "largest-rectangle-in-histogram",
+      "neetcode_path": "/problems/largest-rectangle-in-histogram/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/largest-rectangle-in-histogram/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/largest-rectangle-in-histogram/",
+      "companies": [
+        "Myntra"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Binary Search",
+      "title": "Binary Search",
+      "difficulty": "Easy",
+      "problem_slug": "binary-search",
+      "neetcode_path": "/problems/binary-search/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/binary-search/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/binary-search/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Binary Search",
+      "title": "Search a 2D Matrix",
+      "difficulty": "Medium",
+      "problem_slug": "search-2d-matrix",
+      "neetcode_path": "/problems/search-2d-matrix/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/search-2d-matrix/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/search-a-2d-matrix/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Binary Search",
+      "title": "Koko Eating Bananas",
+      "difficulty": "Medium",
+      "problem_slug": "eating-bananas",
+      "neetcode_path": "/problems/eating-bananas/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/eating-bananas/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/koko-eating-bananas/",
+      "companies": [
+        "Flipkart"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Binary Search",
+      "title": "Find Minimum In Rotated Sorted Array",
+      "difficulty": "Medium",
+      "problem_slug": "find-minimum-in-rotated-sorted-array",
+      "neetcode_path": "/problems/find-minimum-in-rotated-sorted-array/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/find-minimum-in-rotated-sorted-array/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+      "companies": [
+        "Goldman Sachs"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Binary Search",
+      "title": "Search In Rotated Sorted Array",
+      "difficulty": "Medium",
+      "problem_slug": "find-target-in-rotated-sorted-array",
+      "neetcode_path": "/problems/find-target-in-rotated-sorted-array/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/find-target-in-rotated-sorted-array/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+      "companies": [
+        "NewsBreak",
+        "SIXT"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Binary Search",
+      "title": "Time Based Key Value Store",
+      "difficulty": "Medium",
+      "problem_slug": "time-based-key-value-store",
+      "neetcode_path": "/problems/time-based-key-value-store/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/time-based-key-value-store/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/time-based-key-value-store/",
+      "companies": [
+        "Cars 24",
+        "Cockroach Labs",
+        "Coinbase",
+        "Confluent",
+        "Gusto"
+      ],
+      "company_count": 5
+    },
+    {
+      "list": "blind150",
+      "topic": "Binary Search",
+      "title": "Median of Two Sorted Arrays",
+      "difficulty": "Hard",
+      "problem_slug": "median-of-two-sorted-arrays",
+      "neetcode_path": "/problems/median-of-two-sorted-arrays/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/median-of-two-sorted-arrays/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/median-of-two-sorted-arrays/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Linked List",
+      "title": "Reverse Linked List",
+      "difficulty": "Easy",
+      "problem_slug": "reverse-a-linked-list",
+      "neetcode_path": "/problems/reverse-a-linked-list/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/reverse-a-linked-list/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/reverse-linked-list/",
+      "companies": [
+        "Paytm"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Linked List",
+      "title": "Merge Two Sorted Lists",
+      "difficulty": "Easy",
+      "problem_slug": "merge-two-sorted-linked-lists",
+      "neetcode_path": "/problems/merge-two-sorted-linked-lists/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/merge-two-sorted-linked-lists/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/merge-two-sorted-lists/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Linked List",
+      "title": "Linked List Cycle",
+      "difficulty": "Easy",
+      "problem_slug": "linked-list-cycle-detection",
+      "neetcode_path": "/problems/linked-list-cycle-detection/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/linked-list-cycle-detection/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/linked-list-cycle/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Linked List",
+      "title": "Reorder List",
+      "difficulty": "Medium",
+      "problem_slug": "reorder-linked-list",
+      "neetcode_path": "/problems/reorder-linked-list/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/reorder-linked-list/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/reorder-list/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Linked List",
+      "title": "Remove Nth Node From End of List",
+      "difficulty": "Medium",
+      "problem_slug": "remove-node-from-end-of-linked-list",
+      "neetcode_path": "/problems/remove-node-from-end-of-linked-list/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/remove-node-from-end-of-linked-list/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+      "companies": [
+        "Symantec"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Linked List",
+      "title": "Copy List With Random Pointer",
+      "difficulty": "Medium",
+      "problem_slug": "copy-linked-list-with-random-pointer",
+      "neetcode_path": "/problems/copy-linked-list-with-random-pointer/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/copy-linked-list-with-random-pointer/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/copy-list-with-random-pointer/",
+      "companies": [
+        "Mobileye"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Linked List",
+      "title": "Add Two Numbers",
+      "difficulty": "Medium",
+      "problem_slug": "add-two-numbers",
+      "neetcode_path": "/problems/add-two-numbers/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/add-two-numbers/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/add-two-numbers/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Linked List",
+      "title": "Find The Duplicate Number",
+      "difficulty": "Medium",
+      "problem_slug": "find-duplicate-integer",
+      "neetcode_path": "/problems/find-duplicate-integer/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/find-duplicate-integer/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/find-the-duplicate-number/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Linked List",
+      "title": "LRU Cache",
+      "difficulty": "Medium",
+      "problem_slug": "lru-cache",
+      "neetcode_path": "/problems/lru-cache/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/lru-cache/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/lru-cache/",
+      "companies": [
+        "Intuit",
+        "Palo Alto Networks",
+        "PayPal",
+        "Shopify",
+        "Snap",
+        "Squarespace",
+        "eBay"
+      ],
+      "company_count": 7
+    },
+    {
+      "list": "blind150",
+      "topic": "Linked List",
+      "title": "Merge K Sorted Lists",
+      "difficulty": "Hard",
+      "problem_slug": "merge-k-sorted-linked-lists",
+      "neetcode_path": "/problems/merge-k-sorted-linked-lists/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/merge-k-sorted-linked-lists/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+      "companies": [
+        "WarnerMedia"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Linked List",
+      "title": "Reverse Nodes In K Group",
+      "difficulty": "Hard",
+      "problem_slug": "reverse-nodes-in-k-group",
+      "neetcode_path": "/problems/reverse-nodes-in-k-group/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/reverse-nodes-in-k-group/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/reverse-nodes-in-k-group/",
+      "companies": [
+        "MathWorks"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Invert Binary Tree",
+      "difficulty": "Easy",
+      "problem_slug": "invert-a-binary-tree",
+      "neetcode_path": "/problems/invert-a-binary-tree/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/invert-a-binary-tree/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/invert-binary-tree/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Maximum Depth of Binary Tree",
+      "difficulty": "Easy",
+      "problem_slug": "depth-of-binary-tree",
+      "neetcode_path": "/problems/depth-of-binary-tree/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/depth-of-binary-tree/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Diameter of Binary Tree",
+      "difficulty": "Easy",
+      "problem_slug": "binary-tree-diameter",
+      "neetcode_path": "/problems/binary-tree-diameter/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/binary-tree-diameter/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/diameter-of-binary-tree/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Balanced Binary Tree",
+      "difficulty": "Easy",
+      "problem_slug": "balanced-binary-tree",
+      "neetcode_path": "/problems/balanced-binary-tree/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/balanced-binary-tree/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/balanced-binary-tree/",
+      "companies": [
+        "Viasat"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Same Tree",
+      "difficulty": "Easy",
+      "problem_slug": "same-binary-tree",
+      "neetcode_path": "/problems/same-binary-tree/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/same-binary-tree/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/same-tree/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Subtree of Another Tree",
+      "difficulty": "Easy",
+      "problem_slug": "subtree-of-a-binary-tree",
+      "neetcode_path": "/problems/subtree-of-a-binary-tree/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/subtree-of-a-binary-tree/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/subtree-of-another-tree/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Lowest Common Ancestor of a Binary Search Tree",
+      "difficulty": "Medium",
+      "problem_slug": "lowest-common-ancestor-in-binary-search-tree",
+      "neetcode_path": "/problems/lowest-common-ancestor-in-binary-search-tree/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/lowest-common-ancestor-in-binary-search-tree/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Binary Tree Level Order Traversal",
+      "difficulty": "Medium",
+      "problem_slug": "level-order-traversal-of-binary-tree",
+      "neetcode_path": "/problems/level-order-traversal-of-binary-tree/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/level-order-traversal-of-binary-tree/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Binary Tree Right Side View",
+      "difficulty": "Medium",
+      "problem_slug": "binary-tree-right-side-view",
+      "neetcode_path": "/problems/binary-tree-right-side-view/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/binary-tree-right-side-view/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/binary-tree-right-side-view/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Count Good Nodes In Binary Tree",
+      "difficulty": "Medium",
+      "problem_slug": "count-good-nodes-in-binary-tree",
+      "neetcode_path": "/problems/count-good-nodes-in-binary-tree/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/count-good-nodes-in-binary-tree/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/count-good-nodes-in-binary-tree/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Validate Binary Search Tree",
+      "difficulty": "Medium",
+      "problem_slug": "valid-binary-search-tree",
+      "neetcode_path": "/problems/valid-binary-search-tree/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/valid-binary-search-tree/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/validate-binary-search-tree/",
+      "companies": [
+        "Millenium"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Kth Smallest Element In a Bst",
+      "difficulty": "Medium",
+      "problem_slug": "kth-smallest-integer-in-bst",
+      "neetcode_path": "/problems/kth-smallest-integer-in-bst/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/kth-smallest-integer-in-bst/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Construct Binary Tree From Preorder And Inorder Traversal",
+      "difficulty": "Medium",
+      "problem_slug": "binary-tree-from-preorder-and-inorder-traversal",
+      "neetcode_path": "/problems/binary-tree-from-preorder-and-inorder-traversal/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/binary-tree-from-preorder-and-inorder-traversal/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
+      "companies": [
+        "Pure"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Binary Tree Maximum Path Sum",
+      "difficulty": "Hard",
+      "problem_slug": "binary-tree-maximum-path-sum",
+      "neetcode_path": "/problems/binary-tree-maximum-path-sum/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/binary-tree-maximum-path-sum/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/binary-tree-maximum-path-sum/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Trees",
+      "title": "Serialize And Deserialize Binary Tree",
+      "difficulty": "Hard",
+      "problem_slug": "serialize-and-deserialize-binary-tree",
+      "neetcode_path": "/problems/serialize-and-deserialize-binary-tree/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/serialize-and-deserialize-binary-tree/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",
+      "companies": [
+        "Workday"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Heap / Priority Queue",
+      "title": "Kth Largest Element In a Stream",
+      "difficulty": "Easy",
+      "problem_slug": "kth-largest-integer-in-a-stream",
+      "neetcode_path": "/problems/kth-largest-integer-in-a-stream/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/kth-largest-integer-in-a-stream/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+      "companies": [
+        "Tinder"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Heap / Priority Queue",
+      "title": "Last Stone Weight",
+      "difficulty": "Easy",
+      "problem_slug": "last-stone-weight",
+      "neetcode_path": "/problems/last-stone-weight/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/last-stone-weight/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/last-stone-weight/",
+      "companies": [
+        "NVIDIA"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Heap / Priority Queue",
+      "title": "K Closest Points to Origin",
+      "difficulty": "Medium",
+      "problem_slug": "k-closest-points-to-origin",
+      "neetcode_path": "/problems/k-closest-points-to-origin/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/k-closest-points-to-origin/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/k-closest-points-to-origin/",
+      "companies": [
+        "Asana",
+        "Plaid"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Heap / Priority Queue",
+      "title": "Kth Largest Element In An Array",
+      "difficulty": "Medium",
+      "problem_slug": "kth-largest-element-in-an-array",
+      "neetcode_path": "/problems/kth-largest-element-in-an-array/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/kth-largest-element-in-an-array/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/kth-largest-element-in-an-array/",
+      "companies": [
+        "Spotify"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Heap / Priority Queue",
+      "title": "Task Scheduler",
+      "difficulty": "Medium",
+      "problem_slug": "task-scheduling",
+      "neetcode_path": "/problems/task-scheduling/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/task-scheduling/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/task-scheduler/",
+      "companies": [
+        "Roblox"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Heap / Priority Queue",
+      "title": "Design Twitter",
+      "difficulty": "Medium",
+      "problem_slug": "design-twitter-feed",
+      "neetcode_path": "/problems/design-twitter-feed/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/design-twitter-feed/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/design-twitter/",
+      "companies": [
+        "Meesho",
+        "X"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Heap / Priority Queue",
+      "title": "Find Median From Data Stream",
+      "difficulty": "Hard",
+      "problem_slug": "find-median-in-a-data-stream",
+      "neetcode_path": "/problems/find-median-in-a-data-stream/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/find-median-in-a-data-stream/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/find-median-from-data-stream/",
+      "companies": [
+        "Cohesity",
+        "Okta",
+        "TXL"
+      ],
+      "company_count": 3
+    },
+    {
+      "list": "blind150",
+      "topic": "Backtracking",
+      "title": "Subsets",
+      "difficulty": "Medium",
+      "problem_slug": "subsets",
+      "neetcode_path": "/problems/subsets/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/subsets/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/subsets/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Backtracking",
+      "title": "Combination Sum",
+      "difficulty": "Medium",
+      "problem_slug": "combination-target-sum",
+      "neetcode_path": "/problems/combination-target-sum/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/combination-target-sum/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/combination-sum/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Backtracking",
+      "title": "Combination Sum II",
+      "difficulty": "Medium",
+      "problem_slug": "combination-target-sum-ii",
+      "neetcode_path": "/problems/combination-target-sum-ii/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/combination-target-sum-ii/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/combination-sum-ii/",
+      "companies": [
+        "Rakuten"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Backtracking",
+      "title": "Permutations",
+      "difficulty": "Medium",
+      "problem_slug": "permutations",
+      "neetcode_path": "/problems/permutations/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/permutations/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/permutations/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Backtracking",
+      "title": "Subsets II",
+      "difficulty": "Medium",
+      "problem_slug": "subsets-ii",
+      "neetcode_path": "/problems/subsets-ii/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/subsets-ii/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/subsets-ii/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Backtracking",
+      "title": "Generate Parentheses",
+      "difficulty": "Medium",
+      "problem_slug": "generate-parentheses",
+      "neetcode_path": "/problems/generate-parentheses/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/generate-parentheses/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/generate-parentheses/",
+      "companies": [
+        "Grammarly",
+        "Huawei"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Backtracking",
+      "title": "Word Search",
+      "difficulty": "Medium",
+      "problem_slug": "search-for-word",
+      "neetcode_path": "/problems/search-for-word/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/search-for-word/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/word-search/",
+      "companies": [
+        "Faire",
+        "Karat"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Backtracking",
+      "title": "Palindrome Partitioning",
+      "difficulty": "Medium",
+      "problem_slug": "palindrome-partitioning",
+      "neetcode_path": "/problems/palindrome-partitioning/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/palindrome-partitioning/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/palindrome-partitioning/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Backtracking",
+      "title": "Letter Combinations of a Phone Number",
+      "difficulty": "Medium",
+      "problem_slug": "combinations-of-a-phone-number",
+      "neetcode_path": "/problems/combinations-of-a-phone-number/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/combinations-of-a-phone-number/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/letter-combinations-of-a-phone-number/",
+      "companies": [
+        "DE Shaw"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Backtracking",
+      "title": "N Queens",
+      "difficulty": "Hard",
+      "problem_slug": "n-queens",
+      "neetcode_path": "/problems/n-queens/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/n-queens/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/n-queens/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Tries",
+      "title": "Implement Trie Prefix Tree",
+      "difficulty": "Medium",
+      "problem_slug": "implement-prefix-tree",
+      "neetcode_path": "/problems/implement-prefix-tree/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/implement-prefix-tree/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/implement-trie-prefix-tree/",
+      "companies": [
+        "DocuSign"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Tries",
+      "title": "Design Add And Search Words Data Structure",
+      "difficulty": "Medium",
+      "problem_slug": "design-word-search-data-structure",
+      "neetcode_path": "/problems/design-word-search-data-structure/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/design-word-search-data-structure/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/design-add-and-search-words-data-structure/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Tries",
+      "title": "Word Search II",
+      "difficulty": "Hard",
+      "problem_slug": "search-for-word-ii",
+      "neetcode_path": "/problems/search-for-word-ii/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/search-for-word-ii/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/word-search-ii/",
+      "companies": [
+        "Aurora",
+        "Two Sigma"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Number of Islands",
+      "difficulty": "Medium",
+      "problem_slug": "count-number-of-islands",
+      "neetcode_path": "/problems/count-number-of-islands/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/count-number-of-islands/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/number-of-islands/",
+      "companies": [
+        "Anduril",
+        "ByteDance",
+        "Intel",
+        "Samsung",
+        "Siemenes",
+        "Wells Fargo"
+      ],
+      "company_count": 6
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Max Area of Island",
+      "difficulty": "Medium",
+      "problem_slug": "max-area-of-island",
+      "neetcode_path": "/problems/max-area-of-island/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/max-area-of-island/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/max-area-of-island/",
+      "companies": [
+        "Grubhub"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Clone Graph",
+      "difficulty": "Medium",
+      "problem_slug": "clone-graph",
+      "neetcode_path": "/problems/clone-graph/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/clone-graph/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/clone-graph/",
+      "companies": [
+        "Didi"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Walls And Gates",
+      "difficulty": "Medium",
+      "problem_slug": "islands-and-treasure",
+      "neetcode_path": "/problems/islands-and-treasure/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/islands-and-treasure/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/walls-and-gates/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Rotting Oranges",
+      "difficulty": "Medium",
+      "problem_slug": "rotting-fruit",
+      "neetcode_path": "/problems/rotting-fruit/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/rotting-fruit/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/rotting-oranges/",
+      "companies": [
+        "Commvault",
+        "Tekion"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Pacific Atlantic Water Flow",
+      "difficulty": "Medium",
+      "problem_slug": "pacific-atlantic-water-flow",
+      "neetcode_path": "/problems/pacific-atlantic-water-flow/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/pacific-atlantic-water-flow/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/pacific-atlantic-water-flow/",
+      "companies": [
+        "Urban Company"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Surrounded Regions",
+      "difficulty": "Medium",
+      "problem_slug": "surrounded-regions",
+      "neetcode_path": "/problems/surrounded-regions/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/surrounded-regions/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/surrounded-regions/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Course Schedule",
+      "difficulty": "Medium",
+      "problem_slug": "course-schedule",
+      "neetcode_path": "/problems/course-schedule/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/course-schedule/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/course-schedule/",
+      "companies": [
+        "Nordstrom"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Course Schedule II",
+      "difficulty": "Medium",
+      "problem_slug": "course-schedule-ii",
+      "neetcode_path": "/problems/course-schedule-ii/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/course-schedule-ii/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/course-schedule-ii/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Graph Valid Tree",
+      "difficulty": "Medium",
+      "problem_slug": "valid-tree",
+      "neetcode_path": "/problems/valid-tree/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/valid-tree/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/graph-valid-tree/",
+      "companies": [
+        "Zenefits"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Number of Connected Components In An Undirected Graph",
+      "difficulty": "Medium",
+      "problem_slug": "count-connected-components",
+      "neetcode_path": "/problems/count-connected-components/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/count-connected-components/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/",
+      "companies": [
+        "General Motors"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Redundant Connection",
+      "difficulty": "Medium",
+      "problem_slug": "redundant-connection",
+      "neetcode_path": "/problems/redundant-connection/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/redundant-connection/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/redundant-connection/",
+      "companies": [
+        "InMobi"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Graphs",
+      "title": "Word Ladder",
+      "difficulty": "Hard",
+      "problem_slug": "word-ladder",
+      "neetcode_path": "/problems/word-ladder/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/word-ladder/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/word-ladder/",
+      "companies": [
+        "Reddit"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Advanced Graphs",
+      "title": "Network Delay Time",
+      "difficulty": "Medium",
+      "problem_slug": "network-delay-time",
+      "neetcode_path": "/problems/network-delay-time/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/network-delay-time/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/network-delay-time/",
+      "companies": [
+        "Akuna Capital"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Advanced Graphs",
+      "title": "Reconstruct Itinerary",
+      "difficulty": "Hard",
+      "problem_slug": "reconstruct-flight-path",
+      "neetcode_path": "/problems/reconstruct-flight-path/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/reconstruct-flight-path/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/reconstruct-itinerary/",
+      "companies": [
+        "Booking.com"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Advanced Graphs",
+      "title": "Min Cost to Connect All Points",
+      "difficulty": "Medium",
+      "problem_slug": "min-cost-to-connect-points",
+      "neetcode_path": "/problems/min-cost-to-connect-points/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/min-cost-to-connect-points/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/min-cost-to-connect-all-points/",
+      "companies": [
+        "Directi"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Advanced Graphs",
+      "title": "Swim In Rising Water",
+      "difficulty": "Hard",
+      "problem_slug": "swim-in-rising-water",
+      "neetcode_path": "/problems/swim-in-rising-water/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/swim-in-rising-water/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/swim-in-rising-water/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Advanced Graphs",
+      "title": "Alien Dictionary",
+      "difficulty": "Hard",
+      "problem_slug": "foreign-dictionary",
+      "neetcode_path": "/problems/foreign-dictionary/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/foreign-dictionary/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/alien-dictionary/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Advanced Graphs",
+      "title": "Cheapest Flights Within K Stops",
+      "difficulty": "Medium",
+      "problem_slug": "cheapest-flight-path",
+      "neetcode_path": "/problems/cheapest-flight-path/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/cheapest-flight-path/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/",
+      "companies": [
+        "MakeMyTrip"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "1-D Dynamic Programming",
+      "title": "Climbing Stairs",
+      "difficulty": "Easy",
+      "problem_slug": "climbing-stairs",
+      "neetcode_path": "/problems/climbing-stairs/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/climbing-stairs/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/climbing-stairs/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "1-D Dynamic Programming",
+      "title": "Min Cost Climbing Stairs",
+      "difficulty": "Easy",
+      "problem_slug": "min-cost-climbing-stairs",
+      "neetcode_path": "/problems/min-cost-climbing-stairs/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/min-cost-climbing-stairs/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/min-cost-climbing-stairs/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "1-D Dynamic Programming",
+      "title": "House Robber",
+      "difficulty": "Medium",
+      "problem_slug": "house-robber",
+      "neetcode_path": "/problems/house-robber/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/house-robber/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/house-robber/",
+      "companies": [
+        "Cisco"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "1-D Dynamic Programming",
+      "title": "House Robber II",
+      "difficulty": "Medium",
+      "problem_slug": "house-robber-ii",
+      "neetcode_path": "/problems/house-robber-ii/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/house-robber-ii/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/house-robber-ii/",
+      "companies": [
+        "ThoughtSpot"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "1-D Dynamic Programming",
+      "title": "Longest Palindromic Substring",
+      "difficulty": "Medium",
+      "problem_slug": "longest-palindromic-substring",
+      "neetcode_path": "/problems/longest-palindromic-substring/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/longest-palindromic-substring/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/longest-palindromic-substring/",
+      "companies": [
+        "Accolite",
+        "Deloitte",
+        "HSBC",
+        "PhonePe",
+        "ZS Associates",
+        "Zoho"
+      ],
+      "company_count": 6
+    },
+    {
+      "list": "blind150",
+      "topic": "1-D Dynamic Programming",
+      "title": "Palindromic Substrings",
+      "difficulty": "Medium",
+      "problem_slug": "palindromic-substrings",
+      "neetcode_path": "/problems/palindromic-substrings/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/palindromic-substrings/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/palindromic-substrings/",
+      "companies": [
+        "Citadel",
+        "PureStorage"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "1-D Dynamic Programming",
+      "title": "Decode Ways",
+      "difficulty": "Medium",
+      "problem_slug": "decode-ways",
+      "neetcode_path": "/problems/decode-ways/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/decode-ways/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/decode-ways/",
+      "companies": [
+        "Oscar Health"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "1-D Dynamic Programming",
+      "title": "Coin Change",
+      "difficulty": "Medium",
+      "problem_slug": "coin-change",
+      "neetcode_path": "/problems/coin-change/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/coin-change/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/coin-change/",
+      "companies": [
+        "Geico"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "1-D Dynamic Programming",
+      "title": "Maximum Product Subarray",
+      "difficulty": "Medium",
+      "problem_slug": "maximum-product-subarray",
+      "neetcode_path": "/problems/maximum-product-subarray/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/maximum-product-subarray/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/maximum-product-subarray/",
+      "companies": [
+        "HashedIn",
+        "Wayfair"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "1-D Dynamic Programming",
+      "title": "Word Break",
+      "difficulty": "Medium",
+      "problem_slug": "word-break",
+      "neetcode_path": "/problems/word-break/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/word-break/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/word-break/",
+      "companies": [
+        "Otter.ai"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "1-D Dynamic Programming",
+      "title": "Longest Increasing Subsequence",
+      "difficulty": "Medium",
+      "problem_slug": "longest-increasing-subsequence",
+      "neetcode_path": "/problems/longest-increasing-subsequence/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/longest-increasing-subsequence/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/longest-increasing-subsequence/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "1-D Dynamic Programming",
+      "title": "Partition Equal Subset Sum",
+      "difficulty": "Medium",
+      "problem_slug": "partition-equal-subset-sum",
+      "neetcode_path": "/problems/partition-equal-subset-sum/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/partition-equal-subset-sum/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/partition-equal-subset-sum/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "2-D Dynamic Programming",
+      "title": "Unique Paths",
+      "difficulty": "Medium",
+      "problem_slug": "count-paths",
+      "neetcode_path": "/problems/count-paths/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/count-paths/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/unique-paths/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "2-D Dynamic Programming",
+      "title": "Longest Common Subsequence",
+      "difficulty": "Medium",
+      "problem_slug": "longest-common-subsequence",
+      "neetcode_path": "/problems/longest-common-subsequence/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/longest-common-subsequence/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/longest-common-subsequence/",
+      "companies": [
+        "Optum"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "2-D Dynamic Programming",
+      "title": "Best Time to Buy And Sell Stock With Cooldown",
+      "difficulty": "Medium",
+      "problem_slug": "buy-and-sell-crypto-with-cooldown",
+      "neetcode_path": "/problems/buy-and-sell-crypto-with-cooldown/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/buy-and-sell-crypto-with-cooldown/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "2-D Dynamic Programming",
+      "title": "Coin Change II",
+      "difficulty": "Medium",
+      "problem_slug": "coin-change-ii",
+      "neetcode_path": "/problems/coin-change-ii/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/coin-change-ii/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/coin-change-ii/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "2-D Dynamic Programming",
+      "title": "Target Sum",
+      "difficulty": "Medium",
+      "problem_slug": "target-sum",
+      "neetcode_path": "/problems/target-sum/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/target-sum/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/target-sum/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "2-D Dynamic Programming",
+      "title": "Interleaving String",
+      "difficulty": "Medium",
+      "problem_slug": "interleaving-string",
+      "neetcode_path": "/problems/interleaving-string/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/interleaving-string/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/interleaving-string/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "2-D Dynamic Programming",
+      "title": "Longest Increasing Path In a Matrix",
+      "difficulty": "Hard",
+      "problem_slug": "longest-increasing-path-in-matrix",
+      "neetcode_path": "/problems/longest-increasing-path-in-matrix/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/longest-increasing-path-in-matrix/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/longest-increasing-path-in-a-matrix/",
+      "companies": [
+        "Duolingo"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "2-D Dynamic Programming",
+      "title": "Distinct Subsequences",
+      "difficulty": "Hard",
+      "problem_slug": "count-subsequences",
+      "neetcode_path": "/problems/count-subsequences/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/count-subsequences/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/distinct-subsequences/",
+      "companies": [
+        "Trilogy"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "2-D Dynamic Programming",
+      "title": "Edit Distance",
+      "difficulty": "Medium",
+      "problem_slug": "edit-distance",
+      "neetcode_path": "/problems/edit-distance/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/edit-distance/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/edit-distance/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "2-D Dynamic Programming",
+      "title": "Burst Balloons",
+      "difficulty": "Hard",
+      "problem_slug": "burst-balloons",
+      "neetcode_path": "/problems/burst-balloons/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/burst-balloons/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/burst-balloons/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "2-D Dynamic Programming",
+      "title": "Regular Expression Matching",
+      "difficulty": "Hard",
+      "problem_slug": "regular-expression-matching",
+      "neetcode_path": "/problems/regular-expression-matching/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/regular-expression-matching/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/regular-expression-matching/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Greedy",
+      "title": "Maximum Subarray",
+      "difficulty": "Medium",
+      "problem_slug": "maximum-subarray",
+      "neetcode_path": "/problems/maximum-subarray/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/maximum-subarray/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/maximum-subarray/",
+      "companies": [
+        "Upstart"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Greedy",
+      "title": "Jump Game",
+      "difficulty": "Medium",
+      "problem_slug": "jump-game",
+      "neetcode_path": "/problems/jump-game/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/jump-game/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/jump-game/",
+      "companies": [
+        "Shopee",
+        "Verily"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Greedy",
+      "title": "Jump Game II",
+      "difficulty": "Medium",
+      "problem_slug": "jump-game-ii",
+      "neetcode_path": "/problems/jump-game-ii/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/jump-game-ii/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/jump-game-ii/",
+      "companies": [
+        "Zulily"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Greedy",
+      "title": "Gas Station",
+      "difficulty": "Medium",
+      "problem_slug": "gas-station",
+      "neetcode_path": "/problems/gas-station/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/gas-station/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/gas-station/",
+      "companies": [
+        "BitGo",
+        "FreeCharge"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Greedy",
+      "title": "Hand of Straights",
+      "difficulty": "Medium",
+      "problem_slug": "hand-of-straights",
+      "neetcode_path": "/problems/hand-of-straights/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/hand-of-straights/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/hand-of-straights/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Greedy",
+      "title": "Merge Triplets to Form Target Triplet",
+      "difficulty": "Medium",
+      "problem_slug": "merge-triplets-to-form-target",
+      "neetcode_path": "/problems/merge-triplets-to-form-target/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/merge-triplets-to-form-target/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/merge-triplets-to-form-target-triplet/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Greedy",
+      "title": "Partition Labels",
+      "difficulty": "Medium",
+      "problem_slug": "partition-labels",
+      "neetcode_path": "/problems/partition-labels/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/partition-labels/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/partition-labels/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Greedy",
+      "title": "Valid Parenthesis String",
+      "difficulty": "Medium",
+      "problem_slug": "valid-parenthesis-string",
+      "neetcode_path": "/problems/valid-parenthesis-string/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/valid-parenthesis-string/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/valid-parenthesis-string/",
+      "companies": [
+        "Alibaba",
+        "Motive",
+        "Roku"
+      ],
+      "company_count": 3
+    },
+    {
+      "list": "blind150",
+      "topic": "Intervals",
+      "title": "Insert Interval",
+      "difficulty": "Medium",
+      "problem_slug": "insert-new-interval",
+      "neetcode_path": "/problems/insert-new-interval/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/insert-new-interval/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/insert-interval/",
+      "companies": [
+        "Blend"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Intervals",
+      "title": "Merge Intervals",
+      "difficulty": "Medium",
+      "problem_slug": "merge-intervals",
+      "neetcode_path": "/problems/merge-intervals/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/merge-intervals/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/merge-intervals/",
+      "companies": [
+        "Netflix",
+        "Oracle",
+        "Tesco"
+      ],
+      "company_count": 3
+    },
+    {
+      "list": "blind150",
+      "topic": "Intervals",
+      "title": "Non Overlapping Intervals",
+      "difficulty": "Medium",
+      "problem_slug": "non-overlapping-intervals",
+      "neetcode_path": "/problems/non-overlapping-intervals/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/non-overlapping-intervals/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/non-overlapping-intervals/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Intervals",
+      "title": "Meeting Rooms",
+      "difficulty": "Easy",
+      "problem_slug": "meeting-schedule",
+      "neetcode_path": "/problems/meeting-schedule/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/meeting-schedule/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/meeting-rooms/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Intervals",
+      "title": "Meeting Rooms II",
+      "difficulty": "Medium",
+      "problem_slug": "meeting-schedule-ii",
+      "neetcode_path": "/problems/meeting-schedule-ii/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/meeting-schedule-ii/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/meeting-rooms-ii/",
+      "companies": [
+        "Compass",
+        "Lime",
+        "Splunk",
+        "Waymo"
+      ],
+      "company_count": 4
+    },
+    {
+      "list": "blind150",
+      "topic": "Intervals",
+      "title": "Minimum Interval to Include Each Query",
+      "difficulty": "Hard",
+      "problem_slug": "minimum-interval-including-query",
+      "neetcode_path": "/problems/minimum-interval-including-query/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/minimum-interval-including-query/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/minimum-interval-to-include-each-query/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Math & Geometry",
+      "title": "Rotate Image",
+      "difficulty": "Medium",
+      "problem_slug": "rotate-matrix",
+      "neetcode_path": "/problems/rotate-matrix/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/rotate-matrix/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/rotate-image/",
+      "companies": [
+        "IBM",
+        "J.P. Morgan",
+        "Qualcomm",
+        "SIG"
+      ],
+      "company_count": 4
+    },
+    {
+      "list": "blind150",
+      "topic": "Math & Geometry",
+      "title": "Spiral Matrix",
+      "difficulty": "Medium",
+      "problem_slug": "spiral-matrix",
+      "neetcode_path": "/problems/spiral-matrix/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/spiral-matrix/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/spiral-matrix/",
+      "companies": [
+        "AMD",
+        "Capital One",
+        "Epic Systems"
+      ],
+      "company_count": 3
+    },
+    {
+      "list": "blind150",
+      "topic": "Math & Geometry",
+      "title": "Set Matrix Zeroes",
+      "difficulty": "Medium",
+      "problem_slug": "set-zeroes-in-matrix",
+      "neetcode_path": "/problems/set-zeroes-in-matrix/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/set-zeroes-in-matrix/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/set-matrix-zeroes/",
+      "companies": [
+        "Bloomberg",
+        "Juspay"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Math & Geometry",
+      "title": "Happy Number",
+      "difficulty": "Easy",
+      "problem_slug": "non-cyclical-number",
+      "neetcode_path": "/problems/non-cyclical-number/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/non-cyclical-number/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/happy-number/",
+      "companies": [
+        "Jump Trading",
+        "Nike"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Math & Geometry",
+      "title": "Plus One",
+      "difficulty": "Easy",
+      "problem_slug": "plus-one",
+      "neetcode_path": "/problems/plus-one/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/plus-one/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/plus-one/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Math & Geometry",
+      "title": "Pow(x, n)",
+      "difficulty": "Medium",
+      "problem_slug": "pow-x-n",
+      "neetcode_path": "/problems/pow-x-n/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/pow-x-n/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/powx-n/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Math & Geometry",
+      "title": "Multiply Strings",
+      "difficulty": "Medium",
+      "problem_slug": "multiply-strings",
+      "neetcode_path": "/problems/multiply-strings/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/multiply-strings/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/multiply-strings/",
+      "companies": [
+        "Meta",
+        "Nielsen"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Math & Geometry",
+      "title": "Detect Squares",
+      "difficulty": "Medium",
+      "problem_slug": "count-squares",
+      "neetcode_path": "/problems/count-squares/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/count-squares/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/detect-squares/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Bit Manipulation",
+      "title": "Single Number",
+      "difficulty": "Easy",
+      "problem_slug": "single-number",
+      "neetcode_path": "/problems/single-number/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/single-number/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/single-number/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Bit Manipulation",
+      "title": "Number of 1 Bits",
+      "difficulty": "Easy",
+      "problem_slug": "number-of-one-bits",
+      "neetcode_path": "/problems/number-of-one-bits/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/number-of-one-bits/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/number-of-1-bits/",
+      "companies": [
+        "Box"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Bit Manipulation",
+      "title": "Counting Bits",
+      "difficulty": "Easy",
+      "problem_slug": "counting-bits",
+      "neetcode_path": "/problems/counting-bits/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/counting-bits/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/counting-bits/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Bit Manipulation",
+      "title": "Reverse Bits",
+      "difficulty": "Easy",
+      "problem_slug": "reverse-bits",
+      "neetcode_path": "/problems/reverse-bits/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/reverse-bits/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/reverse-bits/",
+      "companies": [],
+      "company_count": 0
+    },
+    {
+      "list": "blind150",
+      "topic": "Bit Manipulation",
+      "title": "Missing Number",
+      "difficulty": "Easy",
+      "problem_slug": "missing-number",
+      "neetcode_path": "/problems/missing-number/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/missing-number/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/missing-number/",
+      "companies": [
+        "AQR Capital Management",
+        "Genpact"
+      ],
+      "company_count": 2
+    },
+    {
+      "list": "blind150",
+      "topic": "Bit Manipulation",
+      "title": "Sum of Two Integers",
+      "difficulty": "Medium",
+      "problem_slug": "sum-of-two-integers",
+      "neetcode_path": "/problems/sum-of-two-integers/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/sum-of-two-integers/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/sum-of-two-integers/",
+      "companies": [
+        "Hulu"
+      ],
+      "company_count": 1
+    },
+    {
+      "list": "blind150",
+      "topic": "Bit Manipulation",
+      "title": "Reverse Integer",
+      "difficulty": "Medium",
+      "problem_slug": "reverse-integer",
+      "neetcode_path": "/problems/reverse-integer/question?list=neetcode150",
+      "neetcode_url": "https://neetcode.io/problems/reverse-integer/question?list=neetcode150",
+      "leetcode_url": "https://leetcode.com/problems/reverse-integer/",
+      "companies": [],
+      "company_count": 0
+    }
+  ]
+}

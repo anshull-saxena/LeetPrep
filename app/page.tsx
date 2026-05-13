@@ -41,6 +41,8 @@ import { useAuth } from '@/components/auth-provider'
 import { ProgressRing } from '@/components/progress-ring'
 import { CommandPalette } from '@/components/command-palette'
 import { LandingPage } from '@/components/landing-page'
+import { ModeSelector, type AppMode } from '@/components/mode-selector'
+import { PathView } from '@/components/path-view'
 import { useToast } from '@/hooks/use-toast'
 import { Toaster } from '@/components/ui/toaster'
 import { Logo, LogoText } from '@/components/logo'
@@ -66,6 +68,7 @@ import {
 } from 'recharts'
 
 export default function Home() {
+  const [appMode, setAppMode] = useState<AppMode | null>(null)
   const [companies, setCompanies] = useState<Company[]>([])
   const [selectedCompanyId, setSelectedCompanyId] = useState<string | null>(null)
   const [questions, setQuestions] = useState<Question[]>([])
@@ -237,6 +240,16 @@ export default function Home() {
     return <LandingPage />
   }
 
+  // Show mode selector if no mode chosen yet
+  if (!appMode) {
+    return <ModeSelector onSelect={setAppMode} />
+  }
+
+  // Show path view for blind paths
+  if (appMode !== 'company') {
+    return <PathView mode={appMode} onBack={() => setAppMode(null)} />
+  }
+
   return (
     <div className="flex min-h-screen bg-background font-sans">
       {/* Command Palette */}
@@ -264,6 +277,11 @@ export default function Home() {
           signOut={signOut}
           signInWithGoogle={signInWithGoogle}
         />
+        <div className="p-4 border-t border-white/5 shrink-0">
+          <Button variant="outline" size="sm" onClick={() => setAppMode(null)} className="w-full text-xs border-white/10 gap-2">
+            Switch Mode
+          </Button>
+        </div>
       </aside>
 
       {/* Main Content */}
@@ -271,7 +289,11 @@ export default function Home() {
         {/* Mobile Header */}
         <div className="md:hidden flex items-center justify-between px-6 py-4 border-b border-white/5 bg-background/80 backdrop-blur-md z-20 shrink-0">
           <LogoText />
-          <Sheet>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" onClick={() => setAppMode(null)} className="text-xs h-8 border-white/10">
+              Switch Mode
+            </Button>
+            <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="rounded-xl">
                 <Menu className="h-6 w-6" />
@@ -299,6 +321,7 @@ export default function Home() {
               />
             </SheetContent>
           </Sheet>
+          </div>
         </div>
 
         {selectedCompanyId ? (
