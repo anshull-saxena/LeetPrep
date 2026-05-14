@@ -1,19 +1,57 @@
-# Company-wise LeetCode Website
+# LeetPrep — Ace Your Coding Interviews
 
-This repository hosts the code for the Company-wise LeetCode Website, a tool that provides access to LeetCode interview questions from over 100 companies sorted by frequency and difficulty. The website categorizes questions based on their timeline (last 6 months, 1 year, or 2 years) and is based on data provided in the repo: [LeetCode Questions Company Wise](https://github.com/krishnadey30/LeetCode-Questions-CompanyWise.git).
+Practice LeetCode interview questions sorted by company frequency and curated Blind 75/150/300 paths. Track progress across devices with Google Sign-In + Supabase sync.
 
 ## Features
-- Filter questions by difficulty.
-- Sort questions by frequency of appearance and difficulty.
-- Access company-specific questions.
-- Search by LeetCode ID to discover company-specific frequency data.
-- Use checkboxes to track attempted questions without needing to log in.
-- Monitor your solving trend over time with the Analysis button, which shows metrics like the number of problems solved over the past week or month and identifies peak productivity hours.
-- Easily integrate new problems into the platform using the Add feature. Review your contributions by selecting Summary under the Add option.
 
+### Company-Wise Practice
+- Browse questions from **100+ companies** sorted by frequency and difficulty
+- Filter by timeline (last 6 months, 1 year, 2 years)
+- Search by LeetCode ID to find company-specific frequency data
+- Analysis dashboard with solving trends, weekly stats, and peak hours
+
+### Blind 75 / 150 / 300 Paths
+- **Blind 75** — The classic curated list of essential LeetCode problems
+- **Blind 150** — Extended list covering more patterns
+- **Blind 300** — Comprehensive preparation for top-tier tech interviews
+- Filter by difficulty (Easy/Medium/Hard) and topic
+- Direct links to LeetCode and NeetCode for each problem
+- Progress bar with percentage tracking
+
+### Progress Sync
+- Track attempted questions with checkboxes
+- **Supabase sync** — progress persists across devices when signed in
+- **Local-first** — works offline, syncs when you log in
+- **Reset** — clear all progress with one click (sidebar → reset icon)
+
+### Authentication
+- Google Sign-In via Firebase Authentication
+- Automatic fallback to redirect if pop-ups are blocked
+- Sync status indicator (cloud/syncing/offline)
 
 ## Access
-Visit the website: [Company-wise LeetCode](https://company-wise-leetcode-farneet.netlify.app/)
+
+Visit the website: [hopefuel.vercel.app](https://hopefuel.vercel.app)
+
+## SEO & Discovery
+
+The site is optimized for search engines with:
+- Sitemap at `/sitemap.xml`
+- Robots.txt at `/robots.txt`
+- Open Graph / Twitter Card meta tags
+- JSON-LD structured data (WebApplication schema)
+- Google Search Console verification support
+
+### Google Search Console Setup
+1. Go to [search.google.com/search-console](https://search.google.com/search-console)
+2. Add your domain/property (e.g., `https://hopefuel.vercel.app`)
+3. Copy the verification meta tag content (looks like `ABC123xyz...`)
+4. Add it to `.env.local`:
+   ```
+   NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=ABC123xyz...
+   ```
+5. Re-deploy on Vercel
+6. Once verified, submit your sitemap: `https://hopefuel.vercel.app/sitemap.xml`
 
 ## Setup
 
@@ -24,77 +62,51 @@ Visit the website: [Company-wise LeetCode](https://company-wise-leetcode-farneet
    cp .env.example .env.local
    ```
 
-2. **Fill in your Firebase credentials** in `.env.local`:
-   - Get these from [Firebase Console](https://console.firebase.google.com/)
-   - Go to Project Settings > General > Your apps
-   - Copy the Firebase SDK configuration values
+2. **Fill in credentials** in `.env.local`:
+
+   **Firebase** (for Google Sign-In):
+   - Get from [Firebase Console](https://console.firebase.google.com/) > Project Settings > General > Your apps
+   - `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, etc.
+
+   **Supabase** (for progress sync):
+   - Create a project at [supabase.com](https://supabase.com)
+   - Go to Project Settings > API
+   - Copy `Project URL` → `NEXT_PUBLIC_SUPABASE_URL`
+   - Copy `anon public` key → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - Run `supabase/schema.sql` in Supabase SQL Editor
+   - Disable RLS on `user_progress` table (Firebase handles auth)
 
 3. **For Vercel deployment**:
-   - Go to your Vercel project settings
-   - Navigate to Environment Variables
-   - Add all variables from `.env.local` (without the quotes)
-   - These will be automatically injected during build
-
-**Important**: Never commit `.env.local` to Git. It's already in `.gitignore`.
+   - Add all env vars in Vercel project settings > Environment Variables
 
 ### Firebase Authentication Setup
 
-To enable Google Sign-In, you need to configure Firebase properly:
-
-1. **Enable Google Sign-In Provider in Firebase Console**:
-   - Go to [Firebase Console](https://console.firebase.google.com/)
-   - Select your project (`leetprep12`)
-   - Navigate to Authentication > Sign-in method
-   - Enable Google as a sign-in provider
-   - Add your OAuth 2.0 Client ID and Secret (if not already configured)
-
+1. **Enable Google Sign-In**:
+   - Firebase Console > Authentication > Sign-in method > Enable Google
 2. **Add Authorized Domains**:
-   - In Firebase Console > Authentication > Settings > Authorized domains
-   - Add your production domain (e.g., `company-wise-leetcode-farneet.netlify.app`)
-   - Add `localhost` for local development
-
-3. **Configure OAuth Consent Screen** (if needed):
-   - Go to [Google Cloud Console](https://console.cloud.google.com/)
-   - Select your project
-   - Navigate to APIs & Services > OAuth consent screen
-   - Fill in the required information
-   - Add test users if in testing mode
-
-4. **Check for Browser Pop-up Blockers**:
-   - The app uses pop-ups for Google Sign-In
-   - If pop-ups are blocked, it will automatically fallback to redirect method
-   - Make sure to allow pop-ups from your domain
+   - Firebase Console > Authentication > Settings > Authorized domains
+   - Add your production domain and `localhost`
+3. **Configure OAuth Consent Screen** if needed in Google Cloud Console
 
 ### Local Development
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
-
 # Open http://localhost:3000
 ```
 
-### Troubleshooting Google Sign-In
+## Changelog
 
-If Google Sign-In is not working:
-
-- **"Pop-up was blocked"**: Allow pop-ups for this site in your browser settings
-- **"Unauthorized domain"**: Add your domain to Firebase authorized domains
-- **"Google sign-in is not enabled"**: Enable Google provider in Firebase Console
-- **Configuration errors**: Check that your Firebase API key is correct in `lib/firebase.ts`
-
-The app now includes:
-- Automatic fallback to redirect method if pop-up is blocked
-- Detailed error messages for authentication failures
-- Toast notifications for errors
-
-## Collaboration
-For collaboration inquiries, contact via [LinkedIn](https://www.linkedin.com/in/farneet-singh-6b155b208/).
+### v2.0.0
+- Blind 75 / 150 / 300 path modes
+- Supabase progress sync
+- Reset progress option
+- Switch mode anytime
+- SEO metadata, sitemap, robots.txt, JSON-LD
 
 ## License
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Licensed under the MIT License.
