@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react'
-import { Search, CheckCircle2, Cloud, CloudOff, Loader2, LogOut, Menu } from 'lucide-react'
+import React, { useState } from 'react'
+import { Search, CheckCircle2, Cloud, CloudOff, Loader2, LogOut, Menu, RotateCcw, AlertTriangle } from 'lucide-react'
 import { Company } from '@/lib/data'
 import { LogoText } from '@/components/logo'
 import { Input } from '@/components/ui/input'
@@ -23,6 +23,7 @@ interface SidebarContentProps {
   syncColor: string
   signOut: () => void
   signInWithGoogle: () => void
+  resetProgress?: () => void
 }
 
 export function SidebarContent({
@@ -39,8 +40,16 @@ export function SidebarContent({
   syncLabel,
   syncColor,
   signOut,
-  signInWithGoogle
+  signInWithGoogle,
+  resetProgress
 }: SidebarContentProps) {
+  const [showResetConfirm, setShowResetConfirm] = useState(false)
+
+  const handleReset = () => {
+    resetProgress?.()
+    setShowResetConfirm(false)
+  }
+
   return (
     <div className="flex flex-col h-full overflow-hidden">
       <div className="p-8 border-b border-white/5 bg-background/50">
@@ -144,14 +153,48 @@ export function SidebarContent({
                 <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">{syncLabel}</p>
               </div>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={signOut}
-              className="h-8 w-8 rounded-lg hover:bg-destructive/10 hover:text-destructive transition-colors"
-            >
-              <LogOut className="h-4 w-4" />
-            </Button>
+            <div className="flex gap-1">
+              {showResetConfirm ? (
+                <div className="flex items-center gap-1">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleReset}
+                    className="h-8 w-8 rounded-lg hover:bg-destructive/20 hover:text-destructive transition-colors"
+                    title="Confirm reset"
+                  >
+                    <AlertTriangle className="h-4 w-4 text-destructive" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setShowResetConfirm(false)}
+                    className="h-8 w-8 rounded-lg hover:bg-muted/30 transition-colors"
+                    title="Cancel"
+                  >
+                    <RotateCcw className="h-3 w-3" />
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setShowResetConfirm(true)}
+                  className="h-8 w-8 rounded-lg hover:bg-destructive/10 hover:text-destructive transition-colors"
+                  title="Reset progress"
+                >
+                  <RotateCcw className="h-4 w-4" />
+                </Button>
+              )}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={signOut}
+                className="h-8 w-8 rounded-lg hover:bg-destructive/10 hover:text-destructive transition-colors"
+              >
+                <LogOut className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         ) : (
           <Button

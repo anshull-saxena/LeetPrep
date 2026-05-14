@@ -81,7 +81,7 @@ export default function Home() {
   const [companySearch, setCompanySearch] = useState('')
   const [dashboardOpen, setDashboardOpen] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
-  const { isCompleted, syncStatus } = useCompletion()
+  const { isCompleted, syncStatus, resetProgress } = useCompletion()
   const { user, loading: authLoading, error: authError, signInWithGoogle, signOut } = useAuth()
   const { toast } = useToast()
 
@@ -276,6 +276,7 @@ export default function Home() {
           syncColor={syncColor}
           signOut={signOut}
           signInWithGoogle={signInWithGoogle}
+          resetProgress={resetProgress}
         />
         <div className="p-4 border-t border-white/5 shrink-0">
           <Button variant="outline" size="sm" onClick={() => setAppMode(null)} className="w-full text-xs border-white/10 gap-2">
@@ -318,6 +319,7 @@ export default function Home() {
                 syncColor={syncColor}
                 signOut={signOut}
                 signInWithGoogle={signInWithGoogle}
+                resetProgress={resetProgress}
               />
             </SheetContent>
           </Sheet>

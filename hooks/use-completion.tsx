@@ -1,8 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useCallback, createContext, useContext, ReactNode } from 'react'
-import { doc, setDoc, onSnapshot } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 import { useAuth } from '@/components/auth-provider'
 
 const STORAGE_KEY = 'completed-questions-v1'
@@ -14,6 +13,7 @@ interface CompletionContextType {
   isCompleted: (questionId: string) => boolean
   isLoaded: boolean
   syncStatus: SyncStatus
+  resetProgress: () => void
 }
 
 const CompletionContext = createContext<CompletionContextType>({
@@ -21,6 +21,7 @@ const CompletionContext = createContext<CompletionContextType>({
   isCompleted: () => false,
   isLoaded: false,
   syncStatus: 'local',
+  resetProgress: () => {},
 })
 
 // Confetti celebration effect
@@ -45,7 +46,6 @@ const triggerConfetti = async () => {
 
     const particleCount = 50 * (timeLeft / duration)
 
-    // Fire confetti from different positions
     confetti({
       ...defaults,
       particleCount,
@@ -79,97 +79,89 @@ export function CompletionProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  // Firestore real-time sync when user is logged in
+  // Sync with Supabase when user logs in
   useEffect(() => {
     if (!user) {
       setSyncStatus('local')
-      // Reset to localStorage-only data when user signs out
-      try {
-        const stored = localStorage.getItem(STORAGE_KEY)
-        setCompleted(stored ? new Set(JSON.parse(stored)) : new Set())
-      } catch {
-        setCompleted(new Set())
-      }
       return
     }
 
-    setSyncStatus('syncing')
-    console.log(`Starting sync for user: ${user.uid}`)
-    const docRef = doc(db, 'users', user.uid)
-
-    const unsubscribe = onSnapshot(
-      docRef,
-      (snapshot) => {
-        if (snapshot.exists()) {
-          const cloudData = snapshot.data()
-          console.log('Received cloud data:', cloudData)
-          const cloudSet = new Set<string>(cloudData.completedQuestions || [])
-
-          // Merge with localStorage on sync
-          const localStored = localStorage.getItem(STORAGE_KEY)
-          if (localStored) {
-            try {
-              const localSet = new Set<string>(JSON.parse(localStored))
-              const merged = new Set([...cloudSet, ...localSet])
-
-              if (merged.size !== cloudSet.size) {
-                console.log(`Merging local (${localSet.size}) and cloud (${cloudSet.size}) data. New size: ${merged.size}`)
-                // Local has items cloud doesn't — push merged set
-                setDoc(docRef, {
-                  completedQuestions: Array.from(merged),
-                  updatedAt: new Date().toISOString(),
-                }, { merge: true }).then(() => {
-                  console.log('Successfully pushed merged data to cloud')
-                }).catch(err => {
-                  console.error('Failed to push merged data:', err)
-                })
-              }
-
-              setCompleted(merged)
-              localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(merged)))
-            } catch (e) {
-              console.error('Failed to parse local storage during merge', e)
-              setCompleted(cloudSet)
-            }
-          } else {
-            console.log('No local data to merge, using cloud data')
-            setCompleted(cloudSet)
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(cloudSet)))
-          }
-        } else {
-          // No cloud data yet — push local data
-          console.log('No cloud data found for user, checking local data...')
-          const localStored = localStorage.getItem(STORAGE_KEY)
-          if (localStored) {
-            try {
-              const localSet = new Set<string>(JSON.parse(localStored))
-              if (localSet.size > 0) {
-                console.log(`Pushing ${localSet.size} local items to new cloud profile`)
-                setDoc(docRef, {
-                  completedQuestions: Array.from(localSet),
-                  updatedAt: new Date().toISOString(),
-                }).then(() => {
-                  console.log('Successfully initialized cloud profile with local data')
-                }).catch(err => {
-                  console.error('Failed to initialize cloud profile:', err)
-                })
-                setCompleted(localSet)
-              }
-            } catch (e) {
-              console.error('Failed to parse local storage', e)
-            }
-          }
-        }
-        setSyncStatus('synced')
-      },
-      (error) => {
-        console.error('Firestore snapshot error:', error)
-        setSyncStatus('offline')
+    const syncFromSupabase = async () => {
+      setSyncStatus('syncing')
+      
+      if (!supabase || !isSupabaseConfigured) {
+        setSyncStatus('local')
+        return
       }
-    )
 
-    return unsubscribe
+      const { data, error } = await supabase
+        .from('user_progress')
+        .select('completed_questions')
+        .eq('user_id', user.uid)
+        .single()
+
+      if (error && error.code !== 'PGRST116') {
+        console.error('Supabase fetch error:', error)
+        setSyncStatus('offline')
+        return
+      }
+
+        const cloudQuestions = (data?.completed_questions || []) as string[]
+        const cloudSet = new Set(cloudQuestions)
+
+      // Get local data
+      const localStored = localStorage.getItem(STORAGE_KEY)
+      let localSet = new Set<string>()
+      if (localStored) {
+        try {
+          localSet = new Set(JSON.parse(localStored))
+        } catch (e) {
+          console.error('Failed to parse local storage', e)
+        }
+      }
+
+      // Merge local and cloud
+      const merged = new Set<string>([...cloudSet, ...localSet])
+      
+      // If local has extras, push to cloud
+      if (localSet.size > cloudSet.size) {
+        await supabase
+          .from('user_progress')
+          .upsert({ 
+            user_id: user.uid, 
+            completed_questions: Array.from(merged) 
+          }, { onConflict: 'user_id' })
+      }
+
+      setCompleted(merged)
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(merged)))
+      setSyncStatus('synced')
+    }
+
+    syncFromSupabase()
   }, [user])
+
+  const saveToSupabase = async (questions: string[]) => {
+    if (!user || !supabase || !isSupabaseConfigured) {
+      setSyncStatus('local')
+      return
+    }
+    
+    setSyncStatus('syncing')
+    const { error } = await supabase
+      .from('user_progress')
+      .upsert({ 
+        user_id: user.uid, 
+        completed_questions: questions 
+      }, { onConflict: 'user_id' })
+
+    if (error) {
+      console.error('Supabase save error:', error)
+      setSyncStatus('offline')
+    } else {
+      setSyncStatus('synced')
+    }
+  }
 
   const toggleCompletion = useCallback((questionId: string) => {
     setCompleted((prev) => {
@@ -180,35 +172,47 @@ export function CompletionProvider({ children }: { children: ReactNode }) {
         newSet.delete(questionId)
       } else {
         newSet.add(questionId)
-        // Trigger confetti when completing a question
         triggerConfetti()
       }
 
       // Save to localStorage
       localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(newSet)))
 
-      // Save to Firestore if logged in
+      // Save to Supabase if logged in
       if (user) {
-        setSyncStatus('syncing')
-        const docRef = doc(db, 'users', user.uid)
-        setDoc(docRef, {
-          completedQuestions: Array.from(newSet),
-          updatedAt: new Date().toISOString(),
-        }, { merge: true }).then(() => {
-          setSyncStatus('synced')
-        }).catch(() => {
-          setSyncStatus('offline')
-        })
+        saveToSupabase(Array.from(newSet))
       }
 
       return newSet
     })
   }, [user])
 
+  const resetProgress = useCallback(async () => {
+    setCompleted(new Set())
+    localStorage.removeItem(STORAGE_KEY)
+
+    if (user && supabase && isSupabaseConfigured) {
+      setSyncStatus('syncing')
+      const { error } = await supabase
+        .from('user_progress')
+        .upsert({ 
+          user_id: user.uid, 
+          completed_questions: [] 
+        }, { onConflict: 'user_id' })
+
+      if (error) {
+        console.error('Supabase reset error:', error)
+        setSyncStatus('offline')
+      } else {
+        setSyncStatus('synced')
+      }
+    }
+  }, [user])
+
   const isCompleted = useCallback((questionId: string) => completed.has(questionId), [completed])
 
   return (
-    <CompletionContext.Provider value={{ toggleCompletion, isCompleted, isLoaded, syncStatus }}>
+    <CompletionContext.Provider value={{ toggleCompletion, isCompleted, isLoaded, syncStatus, resetProgress }}>
       {children}
     </CompletionContext.Provider>
   )
