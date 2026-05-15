@@ -1,13 +1,14 @@
 'use client'
 
 import React, { useState, useEffect, useMemo } from 'react'
-import { ExternalLink, Search, ArrowLeft, CheckCircle2, Code2 } from 'lucide-react'
+import { ExternalLink, Search, ArrowLeft, CheckCircle2, Code2, BookOpen } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { useCompletion } from '@/hooks/use-completion'
 import { CodeEditor } from '@/components/code-editor'
+import { ProblemPanel } from '@/components/problem-panel'
 import { cn } from '@/lib/utils'
 import type { AppMode } from '@/components/mode-selector'
 
@@ -50,7 +51,12 @@ export function PathView({ mode, onBack }: PathViewProps) {
   const [diffFilter, setDiffFilter] = useState<string>('all')
   const [topicFilter, setTopicFilter] = useState<string>('all')
   const [selectedQuestion, setSelectedQuestion] = useState<BlindQuestion | null>(null)
+  const [editorTab, setEditorTab] = useState<'problem' | 'code'>('problem')
   const { isCompleted, toggleCompletion } = useCompletion()
+
+  function leetcodeSlug(url: string): string {
+    return url.replace(/\/$/, '').split('/problems/')[1]?.split('/')[0] || ''
+  }
 
   useEffect(() => {
     setLoading(true)
@@ -206,29 +212,57 @@ export function PathView({ mode, onBack }: PathViewProps) {
           )}
         </div>
 
-        {/* Code editor */}
+        {/* Problem + Editor panel */}
         {selectedQuestion && (
-          <div className="md:w-1/2 lg:w-3/5 border-t md:border-t-0 md:border-l border-white/5 p-4 md:p-6 overflow-y-auto">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="flex-1 min-w-0">
-                <h2 className="font-bold text-sm">{selectedQuestion.title}</h2>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <Badge variant="outline" className={cn('text-[10px] font-bold', DIFFICULTY_COLOR[selectedQuestion.difficulty] ?? '')}>
-                    {selectedQuestion.difficulty}
-                  </Badge>
-                  <span className="text-xs text-muted-foreground">{selectedQuestion.topic}</span>
-                </div>
-              </div>
+          <div className="md:w-1/2 lg:w-3/5 border-t md:border-t-0 md:border-l border-white/5 flex flex-col bg-background">
+            {/* Tabs */}
+            <div className="flex items-center border-b border-white/5 px-4 shrink-0">
+              <button
+                onClick={() => setEditorTab('problem')}
+                className={cn(
+                  'flex items-center gap-1.5 px-3 py-2.5 text-xs font-bold border-b-2 transition-colors',
+                  editorTab === 'problem'
+                    ? 'border-primary text-foreground'
+                    : 'border-transparent text-muted-foreground hover:text-foreground'
+                )}
+              >
+                <BookOpen className="h-3.5 w-3.5" />
+                Problem
+              </button>
+              <button
+                onClick={() => setEditorTab('code')}
+                className={cn(
+                  'flex items-center gap-1.5 px-3 py-2.5 text-xs font-bold border-b-2 transition-colors',
+                  editorTab === 'code'
+                    ? 'border-primary text-foreground'
+                    : 'border-transparent text-muted-foreground hover:text-foreground'
+                )}
+              >
+                <Code2 className="h-3.5 w-3.5" />
+                Code
+              </button>
+              <div className="flex-1" />
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setSelectedQuestion(null)}
-                className="text-xs"
+                className="text-xs h-7"
               >
                 Close
               </Button>
             </div>
-            <CodeEditor questionTitle={selectedQuestion.title} problemSlug={selectedQuestion.problem_slug} />
+
+            {/* Content */}
+            <div className="flex-1 overflow-y-auto p-4 md:p-6">
+              {editorTab === 'problem' ? (
+                <ProblemPanel
+                  leetcodeSlug={leetcodeSlug(selectedQuestion.leetcode_url)}
+                  difficulty={selectedQuestion.difficulty}
+                />
+              ) : (
+                <CodeEditor questionTitle={selectedQuestion.title} problemSlug={selectedQuestion.problem_slug} />
+              )}
+            </div>
           </div>
         )}
       </div>
