@@ -8,6 +8,7 @@ create table if not exists public.user_progress (
   id uuid default gen_random_uuid() primary key,
   user_id text not null unique,
   completed_questions text[] default '{}',
+  saved_code jsonb default '{}'::jsonb,
   created_at timestamptz default now(),
   updated_at timestamptz default now()
 );
@@ -29,14 +30,18 @@ create policy "Users can update own progress" on public.user_progress
 create index if not exists idx_user_progress_user_id on public.user_progress(user_id);
 
 -- Function to auto-upsert on insert conflict
-create or replace function upsert_user_progress(p_user_id text, p_questions text[])
+create or replace function upsert_user_progress(p_user_id text, p_questions text[], p_saved_code jsonb default '{}')
 returns void as $$
 begin
-  insert into public.user_progress (user_id, completed_questions, updated_at)
-  values (p_user_id, p_questions, now())
+  insert into public.user_progress (user_id, completed_questions, saved_code, updated_at)
+  values (p_user_id, p_questions, p_saved_code, now())
   on conflict (user_id)
   do update set
     completed_questions = p_questions,
+    saved_code = case
+      when p_saved_code = '{}'::jsonb then public.user_progress.saved_code
+      else p_saved_code
+    end,
     updated_at = now();
 end;
 $$ language plpgsql;

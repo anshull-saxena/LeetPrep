@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
-import { Play, RotateCcw, Loader2, CheckCircle2, XCircle, Maximize2, Minimize2 } from 'lucide-react'
+import { Play, RotateCcw, Loader2, CheckCircle2, XCircle, Maximize2, Minimize2, Cloud, CloudOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useSavedCode } from '@/hooks/use-saved-code'
 import { cn } from '@/lib/utils'
 
 const MonacoEditor = dynamic(() => import('@monaco-editor/react'), { ssr: false })
@@ -26,16 +27,53 @@ interface CodeEditorProps {
 type OutputStatus = 'idle' | 'running' | 'success' | 'error'
 
 export function CodeEditor({ questionTitle }: CodeEditorProps) {
-  const [language, setLanguage] = useState(LANGUAGES[0])
-  const [code, setCode] = useState(language.template)
+  const { saveCode, getSavedCode, syncStatus } = useSavedCode()
+  const questionId = questionTitle || '__global__'
+  const saved = getSavedCode(questionId)
+
+  const defaultLang = LANGUAGES.find(l => l.id === saved?.language) || LANGUAGES[0]
+
+  const [language, setLanguage] = useState(defaultLang)
+  const [code, setCode] = useState(saved?.code ?? defaultLang.template)
   const [output, setOutput] = useState('')
   const [status, setStatus] = useState<OutputStatus>('idle')
   const [expanded, setExpanded] = useState(false)
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Auto-save with debounce
+  useEffect(() => {
+    if (saveTimer.current) clearTimeout(saveTimer.current)
+    saveTimer.current = setTimeout(() => {
+      saveCode(questionId, language.id, code)
+    }, 1500)
+    return () => { if (saveTimer.current) clearTimeout(saveTimer.current) }
+  }, [code, language.id, questionId, saveCode])
+
+  // Restore saved language+code on question change
+  useEffect(() => {
+    const s = getSavedCode(questionId)
+    if (s) {
+      const lang = LANGUAGES.find(l => l.id === s.language) || LANGUAGES[0]
+      setLanguage(lang)
+      setCode(s.code)
+    } else {
+      setLanguage(LANGUAGES[0])
+      setCode(LANGUAGES[0].template)
+    }
+    setOutput('')
+    setStatus('idle')
+  }, [questionId, getSavedCode])
 
   const switchLanguage = (id: string) => {
     const lang = LANGUAGES.find(l => l.id === id) || LANGUAGES[0]
-    setLanguage(lang)
-    setCode(lang.template)
+    const s = getSavedCode(questionId)
+    if (s && s.language === id) {
+      setLanguage(lang)
+      setCode(s.code)
+    } else {
+      setLanguage(lang)
+      setCode(lang.template)
+    }
     setOutput('')
     setStatus('idle')
   }
@@ -67,16 +105,18 @@ export function CodeEditor({ questionTitle }: CodeEditorProps) {
         setOutput('No output')
         setStatus('success')
       }
-    } catch (e) {
+    } catch {
       setOutput('Execution failed. Check your internet connection.')
       setStatus('error')
     }
   }
 
   const resetCode = () => {
-    setCode(language.template)
+    const template = language.template
+    setCode(template)
     setOutput('')
     setStatus('idle')
+    saveCode(questionId, language.id, template)
   }
 
   return (
@@ -90,6 +130,12 @@ export function CodeEditor({ questionTitle }: CodeEditorProps) {
           <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Code</span>
           {questionTitle && (
             <span className="text-xs text-muted-foreground/50 hidden sm:inline">— {questionTitle}</span>
+          )}
+          {syncStatus === 'synced' && (
+            <Cloud className="h-3 w-3 text-emerald-400/50" />
+          )}
+          {syncStatus === 'offline' && (
+            <CloudOff className="h-3 w-3 text-red-400/50" />
           )}
         </div>
         <div className="flex items-center gap-2">
@@ -156,13 +202,16 @@ export function CodeEditor({ questionTitle }: CodeEditorProps) {
           <RotateCcw className="h-3.5 w-3.5" />
           Reset
         </Button>
+        <span className="text-[10px] text-muted-foreground/40 ml-auto font-mono">
+          Auto-saved
+        </span>
         {status === 'success' && (
-          <span className="flex items-center gap-1 text-xs text-emerald-400 ml-auto">
-            <CheckCircle2 className="h-3.5 w-3.5" /> Executed successfully
+          <span className="flex items-center gap-1 text-xs text-emerald-400">
+            <CheckCircle2 className="h-3.5 w-3.5" /> Executed
           </span>
         )}
         {status === 'error' && (
-          <span className="flex items-center gap-1 text-xs text-red-400 ml-auto">
+          <span className="flex items-center gap-1 text-xs text-red-400">
             <XCircle className="h-3.5 w-3.5" /> Error
           </span>
         )}
