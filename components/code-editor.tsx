@@ -10,6 +10,8 @@ import { cn } from '@/lib/utils'
 
 const MonacoEditor = dynamic(() => import('@monaco-editor/react'), { ssr: false })
 
+const PISTON_API = process.env.NEXT_PUBLIC_PISTON_API_URL || 'https://emkc.org/api/v2/piston/execute'
+
 const LANGUAGES = [
   { id: 'javascript', label: 'JavaScript', version: '18.15.0', template: `function solution() {\n  // Write your code here\n  return null;\n}\n\nconsole.log(solution());` },
   { id: 'python', label: 'Python', version: '3.10.0', template: `def solution():\n    # Write your code here\n    pass\n\nprint(solution())` },
@@ -92,7 +94,7 @@ export function CodeEditor({ questionTitle, problemSlug }: CodeEditorProps) {
     setOutput('')
 
     try {
-      const res = await fetch('https://emkc.org/api/v2/piston/execute', {
+      const res = await fetch(PISTON_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -101,6 +103,20 @@ export function CodeEditor({ questionTitle, problemSlug }: CodeEditorProps) {
           files: [{ content: code }],
         }),
       })
+
+      if (!res.ok) {
+        const text = await res.text()
+        setOutput(
+          `Execution API returned ${res.status}.\n\n` +
+          `The public Piston API is now whitelist-only.\n` +
+          `To fix: deploy your own Piston instance and set NEXT_PUBLIC_PISTON_API_URL in .env.local\n\n` +
+          `Quick deploy: https://github.com/engineer-man/piston#docker-image\n` +
+          `Or use Railway 1-click: https://railway.app/template/piston\n\n` +
+          `Response: ${text.slice(0, 200)}`
+        )
+        setStatus('error')
+        return
+      }
 
       const data = await res.json()
 
@@ -115,7 +131,14 @@ export function CodeEditor({ questionTitle, problemSlug }: CodeEditorProps) {
         setStatus('success')
       }
     } catch {
-      setOutput('Execution failed. Check your internet connection.')
+      setOutput(
+        'Execution API unreachable.\n\n' +
+        'The public Piston API is now whitelist-only (as of Feb 2026).\n' +
+        'Deploy your own instance:\n' +
+        '1. Railway: https://railway.app/template/piston\n' +
+        '2. Docker: https://github.com/engineer-man/piston#docker-image\n' +
+        '3. Set NEXT_PUBLIC_PISTON_API_URL in .env.local'
+      )
       setStatus('error')
     }
   }
