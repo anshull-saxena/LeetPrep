@@ -42,8 +42,9 @@ export function useSavedCode() {
 
     const syncFromSupabase = async () => {
       setSyncStatus('syncing')
+      const sb = supabase!
 
-      const { data, error } = await supabase
+      const { data, error } = await sb
         .from('user_progress')
         .select('saved_code')
         .eq('user_id', user.uid)
@@ -68,7 +69,7 @@ export function useSavedCode() {
 
       // If local has extras, push to cloud
       if (Object.keys(localCode).length > 0) {
-        await supabase
+        await sb
           .from('user_progress')
           .upsert({
             user_id: user.uid,
@@ -90,8 +91,9 @@ export function useSavedCode() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
 
       if (user && supabase && isSupabaseConfigured) {
+        const sb = supabase
         setSyncStatus('syncing')
-        supabase
+        sb
           .from('user_progress')
           .upsert({
             user_id: user.uid,

@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils'
 
 const MonacoEditor = dynamic(() => import('@monaco-editor/react'), { ssr: false })
 
-const PISTON_API = process.env.NEXT_PUBLIC_PISTON_API_URL || 'https://emkc.org/api/v2/piston/execute'
+const BROWSER_LANGS = ['javascript', 'typescript']
 
 const LANGUAGES = [
   { id: 'javascript', label: 'JavaScript', version: '18.15.0', template: `function solution() {\n  // Write your code here\n  return null;\n}\n\nconsole.log(solution());` },
@@ -89,56 +89,42 @@ export function CodeEditor({ questionTitle, problemSlug }: CodeEditorProps) {
     setStatus('idle')
   }
 
-  const runCode = async () => {
+  const runCode = () => {
     setStatus('running')
     setOutput('')
 
-    try {
-      const res = await fetch(PISTON_API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          language: language.id,
-          version: language.version,
-          files: [{ content: code }],
-        }),
-      })
-
-      if (!res.ok) {
-        const text = await res.text()
-        setOutput(
-          `Execution API returned ${res.status}.\n\n` +
-          `The public Piston API is now whitelist-only.\n` +
-          `To fix: deploy your own Piston instance and set NEXT_PUBLIC_PISTON_API_URL in .env.local\n\n` +
-          `Quick deploy: https://github.com/engineer-man/piston#docker-image\n` +
-          `Or use Railway 1-click: https://railway.app/template/piston\n\n` +
-          `Response: ${text.slice(0, 200)}`
-        )
-        setStatus('error')
-        return
-      }
-
-      const data = await res.json()
-
-      if (data.run?.output) {
-        setOutput(data.run.output)
-        setStatus(data.run.code === 0 ? 'success' : 'error')
-      } else if (data.message) {
-        setOutput(data.message)
-        setStatus('error')
-      } else {
-        setOutput('No output')
-        setStatus('success')
-      }
-    } catch {
+    if (!BROWSER_LANGS.includes(language.id)) {
       setOutput(
-        'Execution API unreachable.\n\n' +
-        'The public Piston API is now whitelist-only (as of Feb 2026).\n' +
-        'Deploy your own instance:\n' +
-        '1. Railway: https://railway.app/template/piston\n' +
-        '2. Docker: https://github.com/engineer-man/piston#docker-image\n' +
-        '3. Set NEXT_PUBLIC_PISTON_API_URL in .env.local'
+        `${language.label} execution requires a backend API.\n\n` +
+        `Switch to JavaScript or TypeScript for instant in-browser execution.\n\n` +
+        `To run all languages, deploy Piston:\n` +
+        `https://railway.app/template/piston\n` +
+        `Then set NEXT_PUBLIC_PISTON_API_URL in .env.local`
       )
+      setStatus('error')
+      return
+    }
+
+    try {
+      const logs: string[] = []
+      const mockConsole = {
+        log: (...args: any[]) => logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)).join(' ')),
+        warn: (...args: any[]) => logs.push('⚠ ' + args.join(' ')),
+        error: (...args: any[]) => logs.push('✖ ' + args.join(' ')),
+        info: (...args: any[]) => logs.push(args.join(' ')),
+      }
+
+      const fn = new Function('console', code)
+      fn(mockConsole)
+
+      if (logs.length === 0) {
+        setOutput('(no output)')
+      } else {
+        setOutput(logs.join('\n'))
+      }
+      setStatus('success')
+    } catch (e: any) {
+      setOutput(e?.message || String(e))
       setStatus('error')
     }
   }
@@ -177,7 +163,9 @@ export function CodeEditor({ questionTitle, problemSlug }: CodeEditorProps) {
             className="h-7 rounded-md bg-[#3c3c3c] border border-white/10 px-2 text-xs text-foreground focus:outline-none"
           >
             {LANGUAGES.map(l => (
-              <option key={l.id} value={l.id}>{l.label}</option>
+              <option key={l.id} value={l.id}>
+                {l.label}{BROWSER_LANGS.includes(l.id) ? '' : ' ⚡'}
+              </option>
             ))}
           </select>
           <Button
