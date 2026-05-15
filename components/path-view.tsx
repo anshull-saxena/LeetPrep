@@ -1,12 +1,13 @@
 'use client'
 
 import React, { useState, useEffect, useMemo } from 'react'
-import { ExternalLink, Search, ArrowLeft, CheckCircle2 } from 'lucide-react'
+import { ExternalLink, Search, ArrowLeft, CheckCircle2, Code2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { useCompletion } from '@/hooks/use-completion'
+import { CodeEditor } from '@/components/code-editor'
 import { cn } from '@/lib/utils'
 import type { AppMode } from '@/components/mode-selector'
 
@@ -48,10 +49,12 @@ export function PathView({ mode, onBack }: PathViewProps) {
   const [search, setSearch] = useState('')
   const [diffFilter, setDiffFilter] = useState<string>('all')
   const [topicFilter, setTopicFilter] = useState<string>('all')
+  const [selectedQuestion, setSelectedQuestion] = useState<BlindQuestion | null>(null)
   const { isCompleted, toggleCompletion } = useCompletion()
 
   useEffect(() => {
     setLoading(true)
+    setSelectedQuestion(null)
     fetch(FILE_MAP[mode])
       .then(r => r.json())
       .then(data => setQuestions(data.questions ?? []))
@@ -91,7 +94,6 @@ export function PathView({ mode, onBack }: PathViewProps) {
             {completedCount}/{questions.length} completed
           </p>
         </div>
-        {/* Progress bar */}
         <div className="hidden sm:flex items-center gap-2 shrink-0">
           <div className="w-32 h-1.5 rounded-full bg-white/10 overflow-hidden">
             <div
@@ -136,60 +138,97 @@ export function PathView({ mode, onBack }: PathViewProps) {
         </select>
       </div>
 
-      {/* Question list */}
-      <div className="flex-1 px-4 md:px-6 py-4">
-        {loading ? (
-          <div className="flex items-center justify-center py-20 text-muted-foreground text-sm">Loading...</div>
-        ) : filtered.length === 0 ? (
-          <div className="flex items-center justify-center py-20 text-muted-foreground text-sm">No questions found.</div>
-        ) : (
-          <div className="space-y-1">
-            {filtered.map((q, i) => {
-              const done = isCompleted(q.title)
-              return (
-                <div
-                  key={q.title + i}
-                  className={cn(
-                    'flex items-center gap-3 rounded-xl px-4 py-3 transition-colors',
-                    done ? 'bg-white/3 opacity-60' : 'bg-white/5 hover:bg-white/8'
-                  )}
-                >
-                  <Checkbox
-                    checked={done}
-                    onCheckedChange={() => toggleCompletion(q.title)}
-                    className="h-4 w-4 rounded border-muted-foreground/30 data-[state=checked]:bg-primary data-[state=checked]:border-primary shrink-0"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <span className={cn('font-medium text-sm', done && 'line-through text-muted-foreground')}>
-                      {q.title}
-                    </span>
-                    <span className="ml-2 text-xs text-muted-foreground">{q.topic}</span>
-                  </div>
-                  <Badge
-                    variant="outline"
-                    className={cn('text-[10px] font-bold shrink-0', DIFFICULTY_COLOR[q.difficulty] ?? '')}
+      {/* Split view: list + editor */}
+      <div className="flex-1 flex flex-col md:flex-row">
+        {/* Question list */}
+        <div className={cn(
+          'px-4 md:px-6 py-4 overflow-y-auto',
+          selectedQuestion ? 'md:w-1/2 lg:w-2/5' : 'flex-1'
+        )}>
+          {loading ? (
+            <div className="flex items-center justify-center py-20 text-muted-foreground text-sm">Loading...</div>
+          ) : filtered.length === 0 ? (
+            <div className="flex items-center justify-center py-20 text-muted-foreground text-sm">No questions found.</div>
+          ) : (
+            <div className="space-y-1">
+              {filtered.map((q, i) => {
+                const done = isCompleted(q.title)
+                const isSelected = selectedQuestion?.title === q.title
+                return (
+                  <div
+                    key={q.title + i}
+                    onClick={() => setSelectedQuestion(isSelected ? null : q)}
+                    className={cn(
+                      'flex items-center gap-3 rounded-xl px-4 py-3 transition-all cursor-pointer',
+                      isSelected
+                        ? 'bg-primary/10 ring-1 ring-primary/30'
+                        : done ? 'bg-white/3 opacity-60' : 'bg-white/5 hover:bg-white/8'
+                    )}
                   >
-                    {q.difficulty}
-                  </Badge>
-                  <div className="flex items-center gap-1 shrink-0">
-                    {q.leetcode_url && (
-                      <a href={q.leetcode_url} target="_blank" rel="noopener noreferrer">
-                        <Button variant="ghost" size="icon" className="h-7 w-7">
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </Button>
-                      </a>
-                    )}
-                    {q.neetcode_url && (
-                      <a href={q.neetcode_url} target="_blank" rel="noopener noreferrer">
-                        <Button variant="ghost" size="icon" className="h-7 w-7 text-violet-400 hover:text-violet-300">
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </Button>
-                      </a>
-                    )}
+                    <Checkbox
+                      checked={done}
+                      onCheckedChange={() => toggleCompletion(q.title)}
+                      onClick={e => e.stopPropagation()}
+                      className="h-4 w-4 rounded border-muted-foreground/30 data-[state=checked]:bg-primary data-[state=checked]:border-primary shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <span className={cn('font-medium text-sm block', done && 'line-through text-muted-foreground')}>
+                        {q.title}
+                      </span>
+                      <span className="text-xs text-muted-foreground">{q.topic}</span>
+                    </div>
+                    <Badge
+                      variant="outline"
+                      className={cn('text-[10px] font-bold shrink-0', DIFFICULTY_COLOR[q.difficulty] ?? '')}
+                    >
+                      {q.difficulty}
+                    </Badge>
+                    <div className="flex items-center gap-1 shrink-0">
+                      {q.leetcode_url && (
+                        <a href={q.leetcode_url} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>
+                          <Button variant="ghost" size="icon" className="h-7 w-7">
+                            <ExternalLink className="h-3.5 w-3.5" />
+                          </Button>
+                        </a>
+                      )}
+                      {q.neetcode_url && (
+                        <a href={q.neetcode_url} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>
+                          <Button variant="ghost" size="icon" className="h-7 w-7 text-violet-400 hover:text-violet-300">
+                            <ExternalLink className="h-3.5 w-3.5" />
+                          </Button>
+                        </a>
+                      )}
+                    </div>
                   </div>
+                )
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* Code editor */}
+        {selectedQuestion && (
+          <div className="md:w-1/2 lg:w-3/5 border-t md:border-t-0 md:border-l border-white/5 p-4 md:p-6 overflow-y-auto">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex-1 min-w-0">
+                <h2 className="font-bold text-sm">{selectedQuestion.title}</h2>
+                <div className="flex items-center gap-2 mt-0.5">
+                  <Badge variant="outline" className={cn('text-[10px] font-bold', DIFFICULTY_COLOR[selectedQuestion.difficulty] ?? '')}>
+                    {selectedQuestion.difficulty}
+                  </Badge>
+                  <span className="text-xs text-muted-foreground">{selectedQuestion.topic}</span>
                 </div>
-              )
-            })}
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedQuestion(null)}
+                className="text-xs"
+              >
+                Close
+              </Button>
+            </div>
+            <CodeEditor questionTitle={selectedQuestion.title} />
           </div>
         )}
       </div>
