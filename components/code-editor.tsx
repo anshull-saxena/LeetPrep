@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { Play, RotateCcw, Loader2, CheckCircle2, XCircle, Maximize2, Minimize2, Cloud, CloudOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useSavedCode } from '@/hooks/use-saved-code'
+import { getStarterCode } from '@/lib/starter-code'
 import { cn } from '@/lib/utils'
 
 const MonacoEditor = dynamic(() => import('@monaco-editor/react'), { ssr: false })
@@ -22,19 +23,27 @@ const LANGUAGES = [
 
 interface CodeEditorProps {
   questionTitle?: string
+  problemSlug?: string
 }
 
 type OutputStatus = 'idle' | 'running' | 'success' | 'error'
 
-export function CodeEditor({ questionTitle }: CodeEditorProps) {
+export function CodeEditor({ questionTitle, problemSlug }: CodeEditorProps) {
   const { saveCode, getSavedCode, syncStatus } = useSavedCode()
   const questionId = questionTitle || '__global__'
   const saved = getSavedCode(questionId)
 
+  function getTemplate(langId: string): string {
+    if (problemSlug) {
+      return getStarterCode(problemSlug, langId as any)
+    }
+    return LANGUAGES.find(l => l.id === langId)?.template || LANGUAGES[0].template
+  }
+
   const defaultLang = LANGUAGES.find(l => l.id === saved?.language) || LANGUAGES[0]
 
   const [language, setLanguage] = useState(defaultLang)
-  const [code, setCode] = useState(saved?.code ?? defaultLang.template)
+  const [code, setCode] = useState(saved?.code ?? getTemplate(defaultLang.id))
   const [output, setOutput] = useState('')
   const [status, setStatus] = useState<OutputStatus>('idle')
   const [expanded, setExpanded] = useState(false)
@@ -58,11 +67,11 @@ export function CodeEditor({ questionTitle }: CodeEditorProps) {
       setCode(s.code)
     } else {
       setLanguage(LANGUAGES[0])
-      setCode(LANGUAGES[0].template)
+      setCode(getTemplate(LANGUAGES[0].id))
     }
     setOutput('')
     setStatus('idle')
-  }, [questionId, getSavedCode])
+  }, [questionId, getSavedCode, problemSlug])
 
   const switchLanguage = (id: string) => {
     const lang = LANGUAGES.find(l => l.id === id) || LANGUAGES[0]
@@ -72,7 +81,7 @@ export function CodeEditor({ questionTitle }: CodeEditorProps) {
       setCode(s.code)
     } else {
       setLanguage(lang)
-      setCode(lang.template)
+      setCode(getTemplate(id))
     }
     setOutput('')
     setStatus('idle')
@@ -112,11 +121,11 @@ export function CodeEditor({ questionTitle }: CodeEditorProps) {
   }
 
   const resetCode = () => {
-    const template = language.template
-    setCode(template)
+    const t = getTemplate(language.id)
+    setCode(t)
     setOutput('')
     setStatus('idle')
-    saveCode(questionId, language.id, template)
+    saveCode(questionId, language.id, t)
   }
 
   return (

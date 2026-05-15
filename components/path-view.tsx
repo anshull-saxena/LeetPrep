@@ -228,7 +228,7 @@ export function PathView({ mode, onBack }: PathViewProps) {
                 Close
               </Button>
             </div>
-            <CodeEditor questionTitle={selectedQuestion.title} />
+            <CodeEditor questionTitle={selectedQuestion.title} problemSlug={selectedQuestion.problem_slug} />
           </div>
         )}
       </div>
